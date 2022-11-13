@@ -1,0 +1,19 @@
+.LandingPage{
+    position: relative;
+    width: 100%;
+    height: 100%
+}
+
+.Register_button{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 108px;
+    font-size: 28px;
+    font-family: "Roboto",sans-serif;
+    padding: 10px 60px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+}
