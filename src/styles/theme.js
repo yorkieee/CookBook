@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
-import { green, grey, red } from "@mui/material/colors";
 
-const rawTheme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: "#EDF2FB",
@@ -18,35 +17,16 @@ const rawTheme = createTheme({
       dark: "#ffb25e",
     },
     error: {
-      light: red[50],
-      main: red[500],
-      dark: red[700],
+      light: "#ffcc80",
+      main: "#f57c00",
+      dark: "#e65100",
     },
     success: {
-      light: green[50],
-      main: green[500],
-      dark: green[700],
+      light: "#a5d6a7",
+      main: "#4caf50",
+      dark: "#2e7d32",
     },
-  },
-  typography: {
-    fontFamily: "'Work Sans', sans-serif",
-    fontSize: 14,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
   },
 });
-
-const theme = {
-  ...rawTheme,
-  palette: {
-    ...rawTheme.palette,
-    background: {
-      ...rawTheme.palette.background,
-      default: rawTheme.palette.common.white,
-      placeholder: grey[200],
-    },
-  },
-};
 
 export default theme;
