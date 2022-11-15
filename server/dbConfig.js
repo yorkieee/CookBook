@@ -1,6 +1,5 @@
 import * as dotenv from "dotenv";
 import pg from "pg";
-// import { Sequelize } from "sequelize";
 
 dotenv.config();
 
@@ -15,7 +14,3 @@ export const pool = new Pool({
   database: DB_DATABASE,
   port: DB_PORT,
 });
-
-// const sequelize = new Sequelize("user", "postgres", "Matiboro@1002", {
-//   dialect: "postgres",
-// });
