@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import ListRecipes from "./components/ListRecipes.js";
 import { useState } from "react";
-import { useGetRecipes } from "./components/hooks/useGetRecipes.js";
+import { useGetRecipes } from "./hooks/useGetRecipes.js";
 
 const App = () => {
   const [recipeData, setRecipeData] = useState([]);
