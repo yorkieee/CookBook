@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -14,6 +15,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { Link, useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -152,6 +154,7 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -168,14 +171,16 @@ export default function PrimarySearchAppBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           ></IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+          <Button
+            sx={{ color: "white" }}
+            size="large"
+            onClick={() => {
+              navigate(`/`);
+            }}
           >
-            CookBook
-          </Typography>
+            CookBook{" "}
+          </Button>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -185,6 +190,9 @@ export default function PrimarySearchAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          <li>
+            <Link to="/recipes"> Recipes</Link>
+          </li>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
@@ -236,3 +244,13 @@ export default function PrimarySearchAppBar() {
     </Box>
   );
 }
+
+//
+// <Typography
+//   variant="h6"
+//   noWrap
+//   component="div"
+//   sx={{ display: { xs: "none", sm: "block" } }}
+// >
+//   CookBook
+// </Typography>

@@ -2,11 +2,9 @@ import React from "react";
 import { Button, CssBaseline, Typography } from "@mui/material";
 import image from "../assets/image.jpg";
 import Box from "@mui/material/Box";
-import { Container } from "@mui/system";
 
 const LandingPage = () => {
   return (
-    // <Container>
     <CssBaseline>
       <div
         className="image"
@@ -63,7 +61,6 @@ const LandingPage = () => {
         </Box>
       </div>
     </CssBaseline>
-    // </Container>
   );
 };
 
