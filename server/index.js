@@ -2,7 +2,6 @@ import express from "express";
 import cookbookRoutes from "./routes/cookbookRoutes.js";
 import { pool } from "./dbConfig.js";
 import cors from "cors";
-import { CatchingPokemon } from "@mui/icons-material";
 
 // create express  app
 const app = express();
