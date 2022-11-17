@@ -1,18 +1,32 @@
 import express from "express";
-import { pool } from "../dbConfig.js";
+import {
+  createARecipe,
+  getAllRecipes,
+  getRecipeById,
+  updateRecipe,
+  deleteRecipe,
+} from "../controller/cookBookController.js";
 
 const router = express.Router();
 
-// GET route to query users table using raw SQL and node
-router.get("/all", async (req, res) => {
-  try {
-    const response = await pool.query("SELECT * FROM cookbook");
-    console.log("response");
+router.get("/recipes", getAllRecipes);
 
-    res.json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+router.post("/recipes", createARecipe);
+router.get("/recipes", getAllRecipes);
+router.get("/recipes/:id", getRecipeById);
+router.put("/recipes/:id", updateRecipe);
+router.delete("/recipes/id", deleteRecipe);
 
 export default router;
+
+// // GET route to query users table using raw SQL and node
+// router.get("/all", async (req, res) => {
+//   try {
+//     const response = await pool.query("SELECT * FROM cookbook");
+//     console.log("response");
+
+//     res.json(response);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
