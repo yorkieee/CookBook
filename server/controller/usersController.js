@@ -97,18 +97,21 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
+
   try {
-    const data = await pool.query("SELECT * FROM users WHERE email= $1;", [
+    const data = await pool.query(`SELECT * FROM users WHERE email = $1`, [
       email,
-    ]);
+    ]); //Verifying if the user exists in the database
+
     const user = data.rows;
     if (user.length === 0) {
-      return res.status(400).json({
-        error: "User is not registered. Sign up first",
+      res.status(400).json({
+        error: "User is not registered, please sign up first",
         success: false,
       });
     } else {
       bcrypt.compare(password, user[0].password, (err, result) => {
+        //Comparing the hashed password
         if (err) {
           res.status(500).json({
             error: "Server error",
@@ -140,7 +143,7 @@ export const loginUser = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      error: "Database error occurred while signing in!",
+      error: "Database error occurred while signing in!", //Database connection error
       success: false,
     });
   }
