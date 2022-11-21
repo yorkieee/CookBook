@@ -97,16 +97,16 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(password);
   try {
-    const data = await pool.query(`SELECT * FROM users WHERE email = $1`, [
-      email,
-    ]); //Verifying if the user exists in the database
+    const data = await pool.query(
+      `SELECT * FROM users WHERE email = '${email}'`
+    ); //Verifying if the user exists in the database
 
     const user = data.rows;
     if (user.length === 0) {
       res.status(400).json({
-        error: "User is not registered, please sign up first",
+        error: "User is not registered, Sign Up first",
         success: false,
       });
     } else {
@@ -132,7 +132,7 @@ export const loginUser = async (req, res) => {
           });
         } else {
           //Declaring the errors
-          if (result != true)
+          if (result !== true)
             res.status(400).json({
               error: "Enter correct password!",
               success: false,
@@ -147,4 +147,9 @@ export const loginUser = async (req, res) => {
       success: false,
     });
   }
+};
+
+export const getProfile = async (req, res) => {
+  console.log("req.payload >>>>", req.payload);
+  res.status(201).json(`authorized request for ${req.payload.email}`);
 };
