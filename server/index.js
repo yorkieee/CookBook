@@ -3,6 +3,8 @@ import cookbookRoutes from "./routes/cookbookRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import cors from "cors";
 import * as dotenv from "dotenv";
+// import { passportConfig } from "./middleware/passport.js";
+// import passport from "passport";
 dotenv.config();
 
 // create express  app
@@ -23,6 +25,9 @@ app.use(
 // router.get("/test", (req, res) => {
 //   res.send({ msg: "Test route is working!" });
 // });
+
+// app.use(passport.initialize());
+// passportConfig(passport);
 
 //define the port of our server
 app.listen(5001, () => {

@@ -1,4 +1,4 @@
-import { pool } from "../dbConfig.js";
+import pool from "../dbConfig.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -150,6 +150,6 @@ export const loginUser = async (req, res) => {
 };
 
 export const getProfile = async (req, res) => {
-  console.log("req.payload >>>>", req.payload);
-  res.status(201).json(`authorized request for ${req.payload.email}`);
+  console.log("req.payload >>>>", req.playload);
+  res.status(201).json(`authorized request for  ${req.payload.email}`);
 };

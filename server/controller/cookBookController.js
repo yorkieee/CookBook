@@ -1,4 +1,4 @@
-import { pool } from "../dbConfig.js";
+import pool from "../dbConfig.js";
 
 // get all recipes
 
