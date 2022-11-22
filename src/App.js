@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./Pages/Landingpage.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import ListRecipes from "./components/ListRecipes.js";
+import ListRecipes from "./components/ListRecipes";
 import { useState } from "react";
 import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Layout } from "./styles/Layout";
 
 const theme = createTheme({
   palette: {
@@ -46,14 +47,18 @@ const App = () => {
         <Router>
           <Navbar />
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <LandingPage />
+                </Layout>
+              }
+            />
             <Route
               path="/recipes"
               element={<ListRecipes recipeData={recipeData} />}
             />
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/login" element={<LogIn />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
           </Routes>
         </Router>
       </div>
@@ -62,3 +67,8 @@ const App = () => {
 };
 
 export default App;
+
+//
+// <Route path="/signup" element={<SignUp />}></Route>
+//             <Route path="/login" element={<LogIn />}></Route>
+//             <Route path="/profile" element={<Profile />}></Route>
