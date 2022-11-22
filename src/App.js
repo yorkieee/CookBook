@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./Pages/Landingpage.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import ListRecipes from "./components/ListRecipes";
+import ListRecipes from "./Pages/ListRecipes";
 import { useState } from "react";
 import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
