@@ -24,7 +24,7 @@ const theme = createTheme({
     success: {
       light: "#a5d6a7",
       main: "#4caf50",
-      dark: "#2e7d32",
+      dark: "#d50000",
     },
   },
 });

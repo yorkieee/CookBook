@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -81,6 +80,13 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const linkStyle = {
+    margin: "1rem",
+    textDecoration: "none",
+    color: "white",
+    size: "large",
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -98,8 +104,10 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My recipes</MenuItem>
     </Menu>
   );
 
@@ -178,7 +186,7 @@ export default function PrimarySearchAppBar() {
               navigate(`/`);
             }}
           >
-            CookBook{" "}
+            CookBook
           </Button>
 
           <Search>
@@ -191,7 +199,9 @@ export default function PrimarySearchAppBar() {
             />
           </Search>
           <li>
-            <Link to="/recipes"> Recipes</Link>
+            <Link to="/recipes" style={linkStyle}>
+              Recipes
+            </Link>
           </li>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
