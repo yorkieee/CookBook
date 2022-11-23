@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode } from 'react'
+import React, { createContext, useState, ReactNode, useEffect } from 'react'
 
 const backendUrl = "http://localhost:5001"
 
@@ -35,6 +35,8 @@ const register = async (email: string, password: string, nameForm: string) => {
     setUser({ ...user, name })
     return { success, error }
   }
+
+  
   const login = async (email: string, password: string) => {
     console.log("email", email);
     const options = {
