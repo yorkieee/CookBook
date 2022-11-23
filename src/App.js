@@ -52,7 +52,14 @@ const App = () => {
               path="/recipes"
               element={<ListRecipes recipeData={recipeData} />}
             />
-            <Route path="/signup" element={<SignUp />}></Route>
+            <Route
+              path="/signup"
+              element={
+                <Layout>
+                  <SignUp />
+                </Layout>
+              }
+            ></Route>
             <Route path="/login" element={<Login />}></Route>
           </Routes>
         </Router>
