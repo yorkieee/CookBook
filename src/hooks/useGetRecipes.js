@@ -7,8 +7,6 @@ export const useGetRecipes = (setList) => {
         const response = await fetch("http://localhost:5001/recipes");
         const recipeData = await response.json();
         setList(recipeData);
-
-        console.log(recipeData);
       } catch (err) {
         console.log(err.msg);
       }
