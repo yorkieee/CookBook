@@ -63,6 +63,8 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const navigate = useNavigate();
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -104,7 +106,12 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link tyle={{ textDecoration: "none" }} to="/signup">
+          Sign Up
+        </Link>
+      </MenuItem>
+
       <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My recipes</MenuItem>
@@ -162,7 +169,6 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-  const navigate = useNavigate();
 
   return (
     <Box sx={{ flexGrow: 1 }}>

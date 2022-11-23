@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Layout } from "./styles/Layout";
+import { SignUp } from "./Pages/SignUp.tsx";
 
 const theme = createTheme({
   palette: {
@@ -59,6 +60,7 @@ const App = () => {
               path="/recipes"
               element={<ListRecipes recipeData={recipeData} />}
             />
+            <Route path="/signup" element={<SignUp />}></Route>
           </Routes>
         </Router>
       </div>
