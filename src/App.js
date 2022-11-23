@@ -9,6 +9,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Layout } from "./styles/Layout";
 import { SignUp } from "./Pages/SignUp.tsx";
 import { Login } from "./Pages/Login";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -36,34 +37,36 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Layout>
-                  <LandingPage />
-                </Layout>
-              }
-            />
-            <Route
-              path="/recipes"
-              element={<ListRecipes recipeData={recipeData} />}
-            />
-            <Route
-              path="/signup"
-              element={
-                <Layout>
-                  <SignUp />
-                </Layout>
-              }
-            ></Route>
-            <Route path="/login" element={<Login />}></Route>
-          </Routes>
-        </Router>
-      </div>
+      <AuthContextProvider>
+        <div className="App">
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Layout>
+                    <LandingPage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/recipes"
+                element={<ListRecipes recipeData={recipeData} />}
+              />
+              <Route
+                path="/signup"
+                element={
+                  <Layout>
+                    <SignUp />
+                  </Layout>
+                }
+              ></Route>
+              <Route path="/login" element={<Login />}></Route>
+            </Routes>
+          </Router>
+        </div>
+      </AuthContextProvider>
     </ThemeProvider>
   );
 };
