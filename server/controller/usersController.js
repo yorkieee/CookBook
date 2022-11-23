@@ -97,11 +97,11 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log(password);
+  console.log(email);
   try {
-    const data = await pool.query(
-      `SELECT * FROM users WHERE email = '${email}'`
-    ); //Verifying if the user exists in the database
+    const data = await pool.query(`SELECT * FROM users WHERE email= $1`, [
+      email,
+    ]); //Verifying if the user exists in the database
 
     const user = data.rows;
     if (user.length === 0) {
@@ -143,7 +143,7 @@ export const loginUser = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      error: "Database error occurred while signing in!", //Database connection error
+      error: "Database error occurred while logging in!", //Database connection error
       success: false,
     });
   }
