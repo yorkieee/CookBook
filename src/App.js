@@ -8,32 +8,24 @@ import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Layout } from "./styles/Layout";
 import { SignUp } from "./Pages/SignUp.tsx";
+import { Login } from "./Pages/Login";
 
 const theme = createTheme({
   palette: {
     primary: {
-      light: "#EDF2FB",
       main: "#CCDBFD",
-      dark: "#ABC4FF",
     },
     secondary: {
-      light: "#E2EAFC",
       main: "#C1D3FE",
-      dark: "#B6CCFE",
     },
     warning: {
       main: "#ffc071",
-      dark: "#ffb25e",
     },
     error: {
-      light: "#ffcc80",
       main: "#f57c00",
-      dark: "#e65100",
     },
     success: {
-      light: "#a5d6a7",
       main: "#4caf50",
-      dark: "#2e7d32",
     },
   },
 });
@@ -61,6 +53,7 @@ const App = () => {
               element={<ListRecipes recipeData={recipeData} />}
             />
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/login" element={<Login />}></Route>
           </Routes>
         </Router>
       </div>
