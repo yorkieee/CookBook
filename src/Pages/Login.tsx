@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { SignUp } from "./SignUp";
 import { Container } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -43,7 +42,7 @@ export const Login = () => {
     e.preventDefault();
     const { success, error } = await login(values.email, values.password);
     if (success) {
-      navigate("/");
+      navigate("/profile");
     } else {
       error && setValues({ ...values, error: error });
     }

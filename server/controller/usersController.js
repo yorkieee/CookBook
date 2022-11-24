@@ -17,7 +17,7 @@ export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
     console.log("id", id);
-    const user = await pool.query(`SELECT * FROM users WHERE id = $1;`, [id]);
+    const user = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
     console.log(user);
     res.status(200).json({
       user: user.rows[0],
@@ -30,6 +30,43 @@ export const getUser = async (req, res) => {
     });
   }
 };
+
+export const getUserProfile = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("id", id);
+    const user = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
+    console.log(user);
+    res.status(200).json({
+      user: user.rows[0],
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      success: false,
+    });
+  }
+};
+
+// get users profile
+
+// export const getUsersProfile = async (req, res) => {
+//   try {
+
+//     const user = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
+//     console.log(user);
+//     res.status(200).json({
+//       user: user.rows[0],
+//       success: true,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       error: error,
+//       success: false,
+//     });
+//   }
+// }
 
 //register a user
 
@@ -153,3 +190,9 @@ export const getProfile = async (req, res) => {
   console.log("req.payload >>>>", req.playload);
   res.status(201).json(`authorized request for  ${req.payload.email}`);
 };
+
+// export const logout = async (req, res) => {
+//   try{
+
+//   }catch
+// }
