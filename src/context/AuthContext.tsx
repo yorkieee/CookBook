@@ -6,6 +6,7 @@ type user = { name: string; email?: string };
 
 export type AuthContextValue = {
   user: user | null;
+  isLoggedIn: boolean;
   register: (
     email: string,
     password: string,
@@ -15,14 +16,20 @@ export type AuthContextValue = {
     email: string,
     password: string
   ) => Promise<{ success: boolean; error: string }>;
+  logout: () => void;
 };
 const initialAuth: AuthContextValue = {
   user: null,
+  isLoggedIn: false,
+
   register: () => {
     throw new Error("context not provided.");
   },
   login: () => {
     throw new Error("context not provided.");
+  },
+  logout: () => {
+    throw new Error("logout not successful.");
   },
 };
 
@@ -30,6 +37,7 @@ export const AuthContext = createContext<AuthContextValue>(initialAuth);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<user | null>(initialAuth.user);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const register = async (
     email: string,
@@ -64,10 +72,17 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const { success, token, error, name } = await res.json();
     localStorage.setItem("jwt", token);
     setUser({ ...user, name });
+    setIsLoggedIn(true);
     return { success, error };
   };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+    localStorage.clear();
+    setUser(null);
+  };
   return (
-    <AuthContext.Provider value={{ user, register, login }}>
+    <AuthContext.Provider value={{ user, register, login, isLoggedIn, logout }}>
       {children}
     </AuthContext.Provider>
   );

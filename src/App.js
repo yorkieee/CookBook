@@ -9,7 +9,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Layout } from "./styles/Layout";
 import { SignUp } from "./Pages/SignUp.tsx";
 import { Login } from "./Pages/Login";
+import { Profile } from "././Pages/Profile";
 import { AuthContextProvider } from "./context/AuthContext";
+import { Logout } from "./components/Logout.js";
 
 const theme = createTheme({
   palette: {
@@ -38,42 +40,44 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AuthContextProvider>
-        <div className="App">
-          <Router>
-            <Navbar />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Layout>
-                    <LandingPage />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/recipes"
-                element={<ListRecipes recipeData={recipeData} />}
-              />
-              <Route
-                path="/signup"
-                element={
-                  <Layout>
-                    <SignUp />
-                  </Layout>
-                }
-              ></Route>
-              <Route path="/login" element={<Login />}></Route>
-            </Routes>
-          </Router>
-        </div>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <LandingPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/recipes"
+              element={<ListRecipes recipeData={recipeData} />}
+            />
+            <Route
+              path="/signup"
+              element={
+                <Layout>
+                  <SignUp />
+                </Layout>
+              }
+            ></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route
+              path="/profile"
+              element={
+                <Layout>
+                  <Profile />
+                </Layout>
+              }
+            ></Route>
+            <Route path="/logout" element={<Logout />}></Route>
+          </Routes>
+        </Router>
       </AuthContextProvider>
     </ThemeProvider>
   );
 };
 
 export default App;
-
-//
-// <Route path="/signup" element={<SignUp />}></Route>
-//             <Route path="/login" element={<LogIn />}></Route>
-//             <Route path="/profile" element={<Profile />}></Route>

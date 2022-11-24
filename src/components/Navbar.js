@@ -83,7 +83,6 @@ export default function PrimarySearchAppBar() {
   };
 
   const linkStyle = {
-    margin: "1rem",
     textDecoration: "none",
     color: "white",
     size: "large",
@@ -112,8 +111,18 @@ export default function PrimarySearchAppBar() {
         </Link>
       </MenuItem>
 
-      <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        {" "}
+        <Link style={{ textDecoration: "none" }} to="/login">
+          Log In{" "}
+        </Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link style={{ textDecoration: "none" }} to="/logout">
+          Logout{" "}
+        </Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>My recipes</MenuItem>
     </Menu>
   );
