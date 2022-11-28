@@ -2,6 +2,8 @@ import express from "express";
 import cookbookRoutes from "./routes/cookbookRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import cors from "cors";
+import { passportConfig } from "./middleware/passport.js";
+import passport from "passport";
 import * as dotenv from "dotenv";
 // import { passportConfig } from "./middleware/passport.js";
 // import passport from "passport";
@@ -20,6 +22,9 @@ app.use(
     extended: true,
   })
 );
+
+app.use(passport.initialize());
+passportConfig(passport);
 
 // write first GET route for testing
 // router.get("/test", (req, res) => {
