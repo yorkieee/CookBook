@@ -1,8 +1,15 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
+import axios from "axios";
 
 const backendUrl = "http://localhost:5001";
 
-type user = { name: string; email?: string };
+type user = {
+  success: boolean;
+  user: {
+    name: string;
+    email: string;
+  };
+};
 
 export type AuthContextValue = {
   user: user | null;
@@ -75,6 +82,30 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(true);
     return { success, error };
   };
+
+  const getProfile = async () => {
+    try {
+      const options = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+        method: "get",
+        params: { id: 1 },
+      };
+
+      const data = await axios.get(`${backendUrl}/profile`, options);
+
+      if (data.data) {
+        setUser(data.data);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   const logout = () => {
     setIsLoggedIn(false);

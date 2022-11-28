@@ -1,4 +1,5 @@
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+
 import * as dotenv from "dotenv";
 import passport from "passport";
 import pool from "../dbConfig.js";
@@ -6,7 +7,7 @@ dotenv.config();
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secrectOrKey: process.env.SECRET_KEY,
+  secretOrKey: process.env.SECRET_KEY,
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, async function (
@@ -15,7 +16,7 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async function (
 ) {
   try {
     const res = await pool.query(
-      "SELECT * FROM users WHERE email = $1;"[jwt_payload.email]
+      `SELECT * FROM users WHERE email = $1`[jwt_payload.email]
     );
     const user = res.rows[0];
     console.log("user", user);

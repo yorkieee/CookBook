@@ -12,7 +12,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-//get a user
+//get a user by id
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -30,43 +30,6 @@ export const getUser = async (req, res) => {
     });
   }
 };
-
-export const getUserProfile = async (req, res) => {
-  try {
-    const { id } = req.params;
-    console.log("id", id);
-    const user = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
-    console.log(user);
-    res.status(200).json({
-      user: user.rows[0],
-      success: true,
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: error,
-      success: false,
-    });
-  }
-};
-
-// get users profile
-
-// export const getUsersProfile = async (req, res) => {
-//   try {
-
-//     const user = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
-//     console.log(user);
-//     res.status(200).json({
-//       user: user.rows[0],
-//       success: true,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       error: error,
-//       success: false,
-//     });
-//   }
-// }
 
 //register a user
 
@@ -186,13 +149,28 @@ export const loginUser = async (req, res) => {
   }
 };
 
-export const getProfile = async (req, res) => {
-  console.log("req.payload >>>>", req.playload);
-  res.status(201).json(`authorized request for  ${req.payload.email}`);
+// export const getProfile = async (req, res) => {
+//   console.log("req.payload >>>>", req.payload);
+//   res.status(201).json(`authorized request for  ${req.payload.email}`);
+// };
+
+export const getUserProfile = async (req, res) => {
+  const id = req.query.id;
+
+  try {
+    const user = await pool.query(
+      `SELECT name, email FROM users WHERE id = $1`,
+      [id]
+    );
+
+    res.status(200).json({
+      user: user.rows[0],
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: "can't get a profile",
+      success: false,
+    });
+  }
 };
-
-// export const logout = async (req, res) => {
-//   try{
-
-//   }catch
-// }
