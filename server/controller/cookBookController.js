@@ -6,8 +6,6 @@ export const getAllRecipes = async (req, res) => {
   try {
     const allRecipes = await pool.query("SELECT * FROM recipes");
     res.json(allRecipes.rows);
-    console.log(allRecipes);
-    // res.json(allRecipes.rows);
   } catch (err) {
     console.log(err.msg);
   }
