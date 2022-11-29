@@ -13,28 +13,6 @@ export const getAllRecipes = async (req, res) => {
 
 //create a recipe
 
-// export const postARecipe = async (req, res) => {
-//   try {
-//     const { title } = req.body;
-//     const { ingredients } = req.body;
-//     const { description } = req.body;
-//     const { instructions } = req.body;
-//     const newRecipe = await pool.query(
-//       `INSERT INTO recipes (title) VALUES($1) RETURNING *`,
-//       [title]
-//     )(`INSERT INTO recipes (ingredients) VALUES($1) RETURNING *`, [
-//       ingredients,
-//     ])(`INSERT INTO recipes (description) VALUES($1) RETURNING *`, [
-//       description,
-//     ])(`INSERT INTO recipes (instructions) VALUES($1) RETURNING *`, [
-//       instructions,
-//     ]);
-//     res.json(newRecipe);
-//   } catch (err) {
-//     console.log(err.msg);
-//   }
-// };
-
 export const postARecipe = async (req, res) => {
   const { title, ingredients, description, instructions } = req.body;
   try {
@@ -68,13 +46,12 @@ export const getRecipeById = async (req, res) => {
 
 export const updateRecipe = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { title } = req.body;
-    const updateRecipe = await pool.query(
-      "UPDATE recipes SET title = $1 WHERE recipe_id = $2",
-      [title, id]
+    const changeRecipe = await pool.query(
+      `UPDATE recipes SET title=$1, ingredients=$2, description=$3, instructions=$4
+       WHERE id=$5 RETURNING *`
+      // [...values, id]
     );
-    res.json("Recipe was updated");
+    res.json(changeRecipe.rows);
   } catch (err) {
     console.log(err.message);
   }
@@ -85,11 +62,11 @@ export const updateRecipe = async (req, res) => {
 export const deleteRecipe = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteRecipe = await pool.query(
-      "DELETE FROM recipes WHERE recipe_id =$1",
+    const deleteQuery = await pool.query(
+      `DELETE FROM recipes WHERE recipe_id =$1`,
       [id]
     );
-    res.json("Recipe was deletd!");
+    res.json(deleteQuery.rows);
   } catch (err) {
     console.log(err.msg);
   }
