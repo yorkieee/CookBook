@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  createARecipe,
+  postARecipe,
   getAllRecipes,
   getRecipeById,
   updateRecipe,
@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/recipes", getAllRecipes);
 
-router.post("/recipes", createARecipe);
+router.post("/newrecipe", postARecipe);
 router.get("/recipes", getAllRecipes);
 router.get("/recipes/:id", getRecipeById);
 router.put("/recipes/:id", updateRecipe);

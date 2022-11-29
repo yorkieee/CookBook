@@ -13,22 +13,39 @@ export const getAllRecipes = async (req, res) => {
 
 //create a recipe
 
-export const createARecipe = async (req, res) => {
+// export const postARecipe = async (req, res) => {
+//   try {
+//     const { title } = req.body;
+//     const { ingredients } = req.body;
+//     const { description } = req.body;
+//     const { instructions } = req.body;
+//     const newRecipe = await pool.query(
+//       `INSERT INTO recipes (title) VALUES($1) RETURNING *`,
+//       [title]
+//     )(`INSERT INTO recipes (ingredients) VALUES($1) RETURNING *`, [
+//       ingredients,
+//     ])(`INSERT INTO recipes (description) VALUES($1) RETURNING *`, [
+//       description,
+//     ])(`INSERT INTO recipes (instructions) VALUES($1) RETURNING *`, [
+//       instructions,
+//     ]);
+//     res.json(newRecipe);
+//   } catch (err) {
+//     console.log(err.msg);
+//   }
+// };
+
+export const postARecipe = async (req, res) => {
+  const { title, ingredients, description, instructions } = req.body;
   try {
-    const { title } = req.body;
-    const { ingredients } = req.body;
-    const { description } = req.body;
-    const newRecipe = await pool.query(
-      "INSERT INTO recipes (title) VALUES($1) RETURNING *",
-      [title]
-    )("INSERT INTO recipes (ingredients) VALUES($1) RETURNING *", [
-      ingredients,
-    ])("INSERT INTO recipes (description) VALUES($1) RETURNING *", [
-      description,
-    ]);
-    res.json(newRecipe);
+    const query = await pool.query(
+      "INSERT INTO recipes (title, ingredients, description, instructions) VALUES ($1, $2, $3, $4) RETURNING *",
+      [title, ingredients, description, instructions]
+    );
+
+    res.json(query.rows[0]);
   } catch (err) {
-    console.log(err.msg);
+    console.log(err.message);
   }
 };
 
