@@ -60,7 +60,7 @@ export const SignUp = () => {
         values.name
       );
       if (success) {
-        navigate("/");
+        navigate("/profile");
       } else {
         error && setValues({ ...values, error: error });
       }
@@ -85,9 +85,7 @@ export const SignUp = () => {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+          <h2>Sign up</h2>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -132,15 +130,22 @@ export const SignUp = () => {
                 />
               </Grid>
             </Grid>
-            <button type="submit" onSubmit={handleSubmit}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onSubmit={handleSubmit}
+            >
               Sign Up
-            </button>
+            </Button>
           </form>
           <legend>{values.error}</legend>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Typography variant="body2">Already have an account? </Typography>
+              {"Already have an account?"}
               <Link style={{ textDecoration: "none" }} to="/login">
+                {" "}
                 Log In
               </Link>
             </Grid>
