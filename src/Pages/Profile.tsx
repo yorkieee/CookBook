@@ -7,6 +7,7 @@ export const Profile = () => {
   return (
     <div className="profileCard">
       <h1>{`Hey ${user?.user.name}`}</h1>
+      <div>{`Your email is ${user?.user.email}`}</div>
     </div>
   );
 };
