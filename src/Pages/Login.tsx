@@ -1,18 +1,16 @@
 import React, { ChangeEvent, FormEvent, useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Container } from "@mui/material";
+import { Grid } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import CssBaseline from "@mui/material/CssBaseline";
 
 interface State {
@@ -66,9 +64,10 @@ export const Login = () => {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <Box
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
-            }}
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
           >
             <TextField
               id="email"
@@ -78,32 +77,47 @@ export const Login = () => {
               value={values.email}
               onChange={handleChange("email")}
               required
+              fullWidth
+              margin="normal"
             />
-            <FormControl
-              sx={{ width: "25ch" }}
+            <TextField
+              id="password"
+              label="Your password"
               variant="outlined"
               color="info"
+              value={values.password}
+              onChange={handleChange("password")}
               required
+              fullWidth
+              margin="normal"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+
+            <Button
+              variant="contained"
+              fullWidth
+              color="secondary"
+              type="submit"
+              onSubmit={handleSubmit}
             >
-              <InputLabel htmlFor="password">Type your password</InputLabel>
-              <OutlinedInput
-                id="password"
-                type={"password"}
-                value={values.password}
-                onChange={handleChange("password")}
-              ></OutlinedInput>
-            </FormControl>
-            <Button variant="contained" color="secondary" type="submit">
               Log In
             </Button>
+            <Grid container>
+              <Grid item xs></Grid>
+              <Grid item>
+                <br></br>
+                {"Don't have an account yet?"}
+                <Link to={"/signup"} style={{ textDecoration: "none" }}>
+                  {" "}
+                  Register
+                </Link>{" "}
+              </Grid>
+            </Grid>
           </Box>
         </form>
-        <div>
-          Don't have an account yet?{" "}
-          <Link to={"/signup"} style={{ textDecoration: "none" }}>
-            Register
-          </Link>{" "}
-        </div>
       </Box>
     </Container>
   );
