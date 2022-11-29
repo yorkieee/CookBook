@@ -117,7 +117,11 @@ export default function PrimarySearchAppBar() {
           Log In{" "}
         </Link>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link style={{ textDecoration: "none" }} to="/profile">
+          Profile
+        </Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link style={{ textDecoration: "none" }} to="/logout">
           Logout{" "}

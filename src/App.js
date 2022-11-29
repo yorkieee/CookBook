@@ -12,6 +12,7 @@ import { Login } from "./Pages/Login";
 import { Profile } from "././Pages/Profile";
 import { AuthContextProvider } from "./context/AuthContext";
 import { Logout } from "./components/Logout.js";
+import { AddRecipe } from "./Pages/AddRecipe";
 
 const theme = createTheme({
   palette: {
@@ -40,41 +41,58 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AuthContextProvider>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Layout>
-                  <LandingPage />
-                </Layout>
-              }
-            />
-            <Route
-              path="/recipes"
-              element={<ListRecipes recipeData={recipeData} />}
-            />
-            <Route
-              path="/signup"
-              element={
-                <Layout>
-                  <SignUp />
-                </Layout>
-              }
-            ></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route
-              path="/profile"
-              element={
-                <Layout>
-                  <Profile />
-                </Layout>
-              }
-            ></Route>
-            <Route path="/logout" element={<Logout />}></Route>
-          </Routes>
-        </Router>
+        <Layout>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Layout>
+                    <LandingPage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/recipes"
+                element={<ListRecipes recipeData={recipeData} />}
+              />
+              <Route
+                path="/signup"
+                element={
+                  <Layout>
+                    <SignUp />
+                  </Layout>
+                }
+              ></Route>
+              <Route
+                path="/login"
+                element={
+                  <Layout>
+                    <Login />
+                  </Layout>
+                }
+              ></Route>
+              <Route
+                path="/profile"
+                element={
+                  <Layout>
+                    <Profile />
+                  </Layout>
+                }
+              ></Route>
+              <Route path="/logout" element={<Logout />}></Route>
+              <Route
+                path="/newrecipe"
+                element={
+                  <Layout>
+                    <AddRecipe />
+                  </Layout>
+                }
+              ></Route>
+            </Routes>
+          </Router>
+        </Layout>
       </AuthContextProvider>
     </ThemeProvider>
   );
