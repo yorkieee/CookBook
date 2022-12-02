@@ -1,19 +1,15 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState, ReactNode } from "react";
 
-const backendUrl = "http://localhost:5001";
-
-type user = {
+type userType = {
   success: boolean;
   user: {
     name: string;
     email: string;
   };
-};
+} | null;
 
-export type AuthContextValue = {
-  user: user | null;
-  isLoggedIn: boolean;
+type AuthContextValue = {
+  user: userType;
   register: (
     email: string,
     password: string,
@@ -25,10 +21,9 @@ export type AuthContextValue = {
   ) => Promise<{ success: boolean; error: string }>;
   logout: () => void;
 };
+
 const initialAuth: AuthContextValue = {
   user: null,
-  isLoggedIn: false,
-
   register: () => {
     throw new Error("context not provided.");
   },
@@ -43,8 +38,9 @@ const initialAuth: AuthContextValue = {
 export const AuthContext = createContext<AuthContextValue>(initialAuth);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<user | null>(initialAuth.user);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<userType>(null);
+
+  const backendUrl = "http://localhost:5001";
 
   const register = async (
     email: string,
@@ -62,7 +58,15 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const res = await fetch(`${backendUrl}/signup`, options);
     const { success, error, jwt, name } = await res.json();
     localStorage.setItem("jwt", jwt);
-    setUser({ ...user, name });
+
+    setUser({
+      success: true,
+      user: {
+        name: name,
+        email: email,
+      },
+    });
+
     return { success, error };
   };
 
@@ -74,46 +78,32 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       },
       body: JSON.stringify({ email, password }),
     };
+
     const res = await fetch(`${backendUrl}/login`, options);
-    const { success, token, error, name } = await res.json();
+    const { success, error, name, token } = await res.json();
+
     localStorage.setItem("jwt", token);
-    setUser({ ...user, name });
-    setIsLoggedIn(true);
+
+    if (success) {
+      setUser({
+        success: true,
+        user: {
+          name: name,
+          email: email,
+        },
+      });
+    }
+
     return { success, error };
   };
 
-  const getProfile = async () => {
-    try {
-      const options = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-        method: "get",
-        params: { id: 9 },
-      };
-
-      const data = await axios.get(`${backendUrl}/profile`, options);
-
-      if (data.data) {
-        setUser(data.data);
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-
-  useEffect(() => {
-    getProfile();
-  }, []);
-
   const logout = () => {
-    setIsLoggedIn(false);
     localStorage.clear();
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, register, login, isLoggedIn, logout }}>
+    <AuthContext.Provider value={{ user, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

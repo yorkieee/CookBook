@@ -1,10 +1,11 @@
 const validInfo = (req, res, next) => {
   const { email, name, password } = req.body;
   console.log("validInfo req.body", req.body);
-  function validEmail(userEmail) {
+
+  const validEmail = (userEmail) => {
     // This is RegExp aka Regular expressions aka language of the forgotten gods^^
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
-  }
+  };
 
   if (req.path === "/signup") {
     console.log(!email.length);
