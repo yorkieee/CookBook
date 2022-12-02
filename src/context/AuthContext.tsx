@@ -17,7 +17,7 @@ export type AuthContextValue = {
   register: (
     email: string,
     password: string,
-    name: string
+    nameForm: string
   ) => Promise<{ success: boolean; error: string }>;
   login: (
     email: string,
@@ -67,7 +67,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const login = async (email: string, password: string) => {
-    console.log("email", email);
     const options = {
       method: "POST",
       headers: {
@@ -90,7 +89,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
         method: "get",
-        params: { id: 1 },
+        params: { id: 9 },
       };
 
       const data = await axios.get(`${backendUrl}/profile`, options);
@@ -112,6 +111,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     localStorage.clear();
     setUser(null);
   };
+
   return (
     <AuthContext.Provider value={{ user, register, login, isLoggedIn, logout }}>
       {children}

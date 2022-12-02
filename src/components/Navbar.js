@@ -15,6 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useNavigate } from "react-router-dom";
+import { Logout } from "./Logout";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -106,26 +107,24 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link style={{ textDecoration: "none" }} to="/signup">
+        <Link style={{ linkStyle }} to="/signup">
           Sign Up
         </Link>
       </MenuItem>
 
       <MenuItem onClick={handleMenuClose}>
         {" "}
-        <Link style={{ textDecoration: "none" }} to="/login">
+        <Link style={{ linkStyle }} to="/login">
           Log In{" "}
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link style={{ textDecoration: "none" }} to="/profile">
+        <Link style={{ linkStyle }} to="/profile">
           Profile
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link style={{ textDecoration: "none" }} to="/logout">
-          Logout{" "}
-        </Link>
+        <Logout />
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>My recipes</MenuItem>
     </Menu>
@@ -167,6 +166,11 @@ export default function PrimarySearchAppBar() {
           </Badge>
         </IconButton>
         <p>Notifications</p>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/recipes" style={linkStyle}>
+          Recipes
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
