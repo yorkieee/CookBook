@@ -3,6 +3,7 @@ import { createContext, useState, ReactNode } from "react";
 type userType = {
   success: boolean;
   user: {
+    uid: string;
     name: string;
     email: string;
   };
@@ -56,14 +57,15 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const res = await fetch(`${backendUrl}/signup`, options);
-    const { success, error, jwt, name } = await res.json();
+    const { success, error, jwt, name, uid } = await res.json();
     localStorage.setItem("jwt", jwt);
 
     setUser({
       success: true,
       user: {
-        name: name,
-        email: email,
+        uid,
+        name,
+        email,
       },
     });
 
@@ -80,7 +82,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const res = await fetch(`${backendUrl}/login`, options);
-    const { success, error, name, token } = await res.json();
+    const { success, error, name, token, uid } = await res.json();
 
     localStorage.setItem("jwt", token);
 
@@ -88,8 +90,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       setUser({
         success: true,
         user: {
-          name: name,
-          email: email,
+          uid,
+          name,
+          email,
         },
       });
     }
