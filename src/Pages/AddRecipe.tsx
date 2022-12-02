@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from "react";
 import { TextField } from "@mui/material";
 import Container from "@mui/material/Container";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 
 const backendUrl = "http://localhost:5001";
@@ -12,8 +11,6 @@ export const AddRecipe = () => {
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
-
-  // const navigate = useNavigate();
 
   const onSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
@@ -32,9 +29,6 @@ export const AddRecipe = () => {
       console.log(err.message);
     }
   };
-
-  // if (success) {
-  //   navigate("/recipes");
 
   return (
     <React.Fragment>
