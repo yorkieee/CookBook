@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext } from "react";
+import { ChangeEvent, FormEvent, useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
@@ -91,6 +91,10 @@ export const Login = () => {
               />
             </FormControl>
           </FormControl>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
 
           <Button
             variant="contained"
@@ -117,8 +121,3 @@ export const Login = () => {
     </Container>
   );
 };
-
-/* <FormControlLabel
-control={<Checkbox value="remember" color="primary" />}
-label="Remember me"
-/> */

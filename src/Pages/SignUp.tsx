@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { InputLabel } from "@mui/material";
@@ -25,8 +24,6 @@ const Copyright = (props: any) => {
     </Typography>
   );
 };
-
-const theme = createTheme();
 
 interface State {
   password: string;
@@ -70,89 +67,88 @@ export const SignUp = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container
-        component="main"
-        maxWidth="xs"
-        sx={{ backgroundColor: "white", borderRadius: 5 }}
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{ backgroundColor: "white", borderRadius: 5 }}
+    >
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <h2>Sign up</h2>
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <label htmlFor="name"></label>
-                <TextField
-                  name="fullName"
-                  required
-                  fullWidth
-                  id="name"
-                  type="text"
-                  onChange={handleChange("name")}
-                  value={values.name}
-                  label="Full Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputLabel htmlFor="email"></InputLabel>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  type="email"
-                  label="Email Address"
-                  onChange={handleChange("email")}
-                  value={values.email}
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <label htmlFor="password"></label>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  onChange={handleChange("password")}
-                  value={values.password}
-                />
-              </Grid>
+        <h2>Sign up</h2>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <label htmlFor="name"></label>
+              <TextField
+                name="fullName"
+                required
+                fullWidth
+                id="name"
+                type="text"
+                onChange={handleChange("name")}
+                value={values.name}
+                label="Full Name"
+                autoFocus
+              />
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onSubmit={handleSubmit}
-            >
-              Sign Up
-            </Button>
-          </form>
-          <legend>{values.error}</legend>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              {"Already have an account?"}
-              <Link style={{ textDecoration: "none" }} to="/login">
-                {" "}
-                Log In
-              </Link>
+            <Grid item xs={12}>
+              <InputLabel htmlFor="email"></InputLabel>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                type="email"
+                label="Email Address"
+                onChange={handleChange("email")}
+                value={values.email}
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label htmlFor="password"></label>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                onChange={handleChange("password")}
+                value={values.password}
+              />
             </Grid>
           </Grid>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+          <Button
+            variant="contained"
+            fullWidth
+            color="secondary"
+            type="submit"
+            sx={{ mt: 3, mb: 2 }}
+            onSubmit={handleSubmit}
+          >
+            Sign Up
+          </Button>
+        </form>
+        <legend>{values.error}</legend>
+        <Grid container justifyContent="flex-end">
+          <Grid item>
+            {"Already have an account?"}
+            <Link style={{ textDecoration: "none" }} to="/login">
+              {" "}
+              Log In
+            </Link>
+          </Grid>
+        </Grid>
+      </Box>
+      <Copyright sx={{ mt: 5 }} />
+    </Container>
   );
 };
