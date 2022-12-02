@@ -174,3 +174,21 @@ export const getUserProfile = async (req, res) => {
     });
   }
 };
+
+export const updateUsername = async (req, res) => {
+  const { name, id } = req.body;
+  pool.query(`UPDATE users SET name = $1 WHERE id = $2;`, [name, id], (err) => {
+    if (err) {
+      console.log(id);
+      console.error(err);
+      return res.status(500).json({
+        error: "Database error",
+        success: false,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+      });
+    }
+  });
+};
