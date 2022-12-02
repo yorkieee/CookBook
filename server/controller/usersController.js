@@ -1,7 +1,7 @@
 import pool from "../dbConfig.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
+import { v4 as uuidv4 } from "uuid";
 export const getAllUsers = async (req, res) => {
   try {
     const getAllUsers = await pool.query("SELECT * FROM users");
@@ -59,8 +59,8 @@ export const registerUser = async (req, res) => {
         };
 
         pool.query(
-          `INSERT INTO users (name, email, password) VALUES ($1,$2,$3);`,
-          [user.name, user.email, user.password],
+          `INSERT INTO users (name, email, password, uid) VALUES ($1,$2,$3,$4);`,
+          [user.name, user.email, user.password, uuidv4()],
           (err) => {
             if (err) {
               console.error(err);
