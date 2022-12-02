@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Container } from "@mui/material";
 import { Grid } from "@mui/material";
+import { FormControl } from "@mui/material";
+
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -63,12 +65,7 @@ export const Login = () => {
       >
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <FormControl required fullWidth>
             <TextField
               id="email"
               label="Your email"
@@ -80,45 +77,48 @@ export const Login = () => {
               fullWidth
               margin="normal"
             />
-            <TextField
-              id="password"
-              label="Your password"
-              variant="outlined"
-              color="info"
-              value={values.password}
-              onChange={handleChange("password")}
-              required
-              fullWidth
-              margin="normal"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            <FormControl>
+              <TextField
+                id="password"
+                label="Your password"
+                variant="outlined"
+                color="info"
+                value={values.password}
+                onChange={handleChange("password")}
+                required
+                fullWidth
+                margin="normal"
+              />
+            </FormControl>
+          </FormControl>
 
-            <Button
-              variant="contained"
-              fullWidth
-              color="secondary"
-              type="submit"
-              onSubmit={handleSubmit}
-            >
-              Log In
-            </Button>
-            <Grid container>
-              <Grid item xs></Grid>
-              <Grid item>
-                <br></br>
-                {"Don't have an account yet?"}
-                <Link to={"/signup"} style={{ textDecoration: "none" }}>
-                  {" "}
-                  Register
-                </Link>{" "}
-              </Grid>
+          <Button
+            variant="contained"
+            fullWidth
+            color="secondary"
+            type="submit"
+            onSubmit={handleSubmit}
+          >
+            Log In
+          </Button>
+          <Grid container>
+            <Grid item xs></Grid>
+            <Grid item>
+              <br></br>
+              {"Don't have an account yet?"}
+              <Link to={"/signup"} style={{ textDecoration: "none" }}>
+                {" "}
+                Register
+              </Link>{" "}
             </Grid>
-          </Box>
+          </Grid>
         </form>
       </Box>
     </Container>
   );
 };
+
+/* <FormControlLabel
+control={<Checkbox value="remember" color="primary" />}
+label="Remember me"
+/> */
