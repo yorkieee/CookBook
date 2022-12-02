@@ -35,6 +35,8 @@ export const getUser = async (req, res) => {
 
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
+  const uid = uuidv4();
+
   try {
     const data = await pool.query("SELECT * FROM users WHERE email= $1;", [
       email,
@@ -60,7 +62,7 @@ export const registerUser = async (req, res) => {
 
         pool.query(
           `INSERT INTO users (name, email, password, uid) VALUES ($1,$2,$3,$4);`,
-          [user.name, user.email, user.password, uuidv4()],
+          [user.name, user.email, user.password, uid],
           (err) => {
             if (err) {
               console.error(err);
@@ -80,6 +82,7 @@ export const registerUser = async (req, res) => {
                 success: true,
                 name: user.name,
                 jwt: token,
+                uid,
               });
             }
           }
