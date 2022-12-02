@@ -1,6 +1,5 @@
+import { dbGetUserNameByUid } from "../db-utils/dbGetUserNameByUid.js";
 import pool from "../dbConfig.js";
-
-// get all recipes
 
 export const getAllRecipes = async (req, res) => {
   try {
@@ -11,14 +10,15 @@ export const getAllRecipes = async (req, res) => {
   }
 };
 
-//create a recipe
-
 export const postARecipe = async (req, res) => {
-  const { title, ingredients, description, instructions } = req.body;
+  const { title, ingredients, description, instructions, authorUid } = req.body;
+
+  const authorName = await dbGetUserNameByUid(authorUid);
+
   try {
     const query = await pool.query(
-      "INSERT INTO recipes (title, ingredients, description, instructions) VALUES ($1, $2, $3, $4) RETURNING *",
-      [title, ingredients, description, instructions]
+      "INSERT INTO recipes (title, ingredients, description, instructions, author_name) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      [title, ingredients, description, instructions, authorName]
     );
 
     res.json(query.rows[0]);
@@ -26,8 +26,6 @@ export const postARecipe = async (req, res) => {
     console.log(err.message);
   }
 };
-
-//get a recipe
 
 export const getRecipeById = async (req, res) => {
   try {
@@ -41,8 +39,6 @@ export const getRecipeById = async (req, res) => {
     console.log(err.message);
   }
 };
-
-//update a recipe
 
 export const updateRecipe = async (req, res) => {
   try {

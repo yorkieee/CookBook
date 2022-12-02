@@ -1,8 +1,9 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useContext } from "react";
 import { TextField } from "@mui/material";
 import Container from "@mui/material/Container";
 import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
+import { AuthContext } from "../context/AuthContext";
 
 const backendUrl = "http://localhost:5001";
 
@@ -11,11 +12,19 @@ export const AddRecipe = () => {
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
+  const { user } = useContext(AuthContext);
+  const uid = user?.user.uid;
 
   const onSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const body = { title, description, ingredients, instructions };
+      const body = {
+        title,
+        description,
+        ingredients,
+        instructions,
+        authorUid: uid,
+      };
       const response = await fetch(`${backendUrl}/newrecipe`, {
         method: "POST",
         headers: {
