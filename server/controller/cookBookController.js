@@ -57,6 +57,30 @@ export const updateRecipe = async (req, res) => {
   }
 };
 
+// export const updateMyPost = async (req, res) => {
+//   console.log("req.user", req.user);
+//   const postid = req.params.id;
+//   const uid = req.user.id;
+//   const { title, description, price, postcode, postimage } = req.body;
+//   pool.query(
+//     `UPDATE user_posts SET title = $1, description = $2, price = $3, postcode = $4, postimage = $5 WHERE postid = $6 and usersid = $7;`,
+//     [title, description, price, postcode, postimage, postid, uid],
+//     (err) => {
+//       if (err) {
+//         console.error(err);
+//         return res.status(500).json({
+//           error: "Database update my post error",
+//           success: false,
+//         });
+//       } else {
+//         res.status(200).send({
+//           success: true,
+//         });
+//       }
+//     }
+//   );
+// };
+
 //delete a recipe
 
 export const deleteRecipe = async (req, res) => {
