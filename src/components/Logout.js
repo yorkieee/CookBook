@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
 
 export const Logout = () => {
   const { logout } = useContext(AuthContext);
-  console.log("success", logout);
-  return <LogoutIcon onClick={logout}></LogoutIcon>;
-};
+  const navigate = useNavigate();
 
-// <Button contained color="secondary" onClick={logout}>
-// Logout
-// </Button>
+  const onClick = () => {
+    logout();
+    navigate("/");
+  };
+
+  return <LogoutIcon cursor={"pointer"} onClick={onClick}></LogoutIcon>;
+};
