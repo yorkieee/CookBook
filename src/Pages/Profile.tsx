@@ -76,7 +76,7 @@ export const Profile = () => {
         </Button>
         <Button
           onClick={() => {
-            navigate(`/newrecipe`);
+            navigate(`/usersrecipe`);
           }}
         >
           {" "}
