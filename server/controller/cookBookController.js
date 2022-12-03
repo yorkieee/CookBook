@@ -1,4 +1,5 @@
 import { dbGetUserNameByUid } from "../db-utils/dbGetUserNameByUid.js";
+import { getAllRecipesByUid } from "../db-utils/getAllRecipesByUid.js";
 import pool from "../dbConfig.js";
 
 export const getAllRecipes = async (req, res) => {
@@ -29,14 +30,11 @@ export const postARecipe = async (req, res) => {
 
 export const getUsersRecipe = async (req, res) => {
   const uid = req.body.uid;
-
   try {
-    const authorName = await dbGetUserNameByUid(uid);
-    const usersRecipes = await pool.query(
-      `SELECT * FROM recipes WHERE author_name = $1`,
-      [authorName]
-    );
-    res.json(usersRecipes.rows[0]);
+    const usersRecipes = await getAllRecipesByUid(uid);
+    console.log(usersRecipes);
+
+    res.json(usersRecipes);
   } catch (err) {
     console.log(err.message);
   }

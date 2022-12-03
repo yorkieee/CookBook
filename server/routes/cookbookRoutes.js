@@ -6,6 +6,7 @@ import {
   deleteRecipe,
   getUsersRecipe,
 } from "../controller/cookBookController.js";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get("/recipes", getAllRecipes);
 
 router.post("/newrecipe", postARecipe);
 router.get("/recipes", getAllRecipes);
-router.get("/usersrecipe", getUsersRecipe);
+router.get("/usersrecipe", authMiddleware, getUsersRecipe);
 router.put("/recipes/:id", updateRecipe);
 router.delete("/recipes/:id", deleteRecipe);
 
