@@ -27,14 +27,16 @@ export const postARecipe = async (req, res) => {
   }
 };
 
-export const getRecipeById = async (req, res) => {
+export const getUsersRecipe = async (req, res) => {
+  const uid = req.body.uid;
+
   try {
-    const { id } = req.params;
-    const recipes = await pool.query(
-      "SELECT * FROM recipes WHERE recipe_id = $1",
-      [id]
+    const authorName = await dbGetUserNameByUid(uid);
+    const usersRecipes = await pool.query(
+      `SELECT * FROM recipes WHERE author_name = $1`,
+      [authorName]
     );
-    res.json(recipes.rows[0]);
+    res.json(usersRecipes.rows[0]);
   } catch (err) {
     console.log(err.message);
   }

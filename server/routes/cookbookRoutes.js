@@ -2,9 +2,9 @@ import express from "express";
 import {
   postARecipe,
   getAllRecipes,
-  getRecipeById,
   updateRecipe,
   deleteRecipe,
+  getUsersRecipe,
 } from "../controller/cookBookController.js";
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get("/recipes", getAllRecipes);
 
 router.post("/newrecipe", postARecipe);
 router.get("/recipes", getAllRecipes);
-router.get("/recipes/:id", getRecipeById);
+router.get("/usersrecipe", getUsersRecipe);
 router.put("/recipes/:id", updateRecipe);
 router.delete("/recipes/:id", deleteRecipe);
 
