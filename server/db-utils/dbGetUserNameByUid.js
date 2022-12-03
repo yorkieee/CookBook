@@ -11,6 +11,10 @@ export const dbGetUserNameByUid = async (uid) => {
     [uid]
   );
 
+  if (!authorNameQuery.rows[0]) {
+    throw new Error("test error");
+  }
+
   const userName = authorNameQuery.rows[0].name;
 
   return userName;
