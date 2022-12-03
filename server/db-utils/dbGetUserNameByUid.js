@@ -6,13 +6,14 @@ import pool from "../dbConfig.js";
  * @returns user name string
  */
 export const dbGetUserNameByUid = async (uid) => {
+  console.log("id", uid);
   const authorNameQuery = await pool.query(
     `SELECT name FROM users WHERE uid = $1`,
     [uid]
   );
 
   if (!authorNameQuery.rows[0]) {
-    throw new Error("test error");
+    throw new Error("dbGetUserNameByUid: error in query");
   }
 
   const userName = authorNameQuery.rows[0].name;
