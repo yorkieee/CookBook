@@ -1,5 +1,4 @@
 import { useGetUserRecipes } from "../hooks/useGetUserRecipes";
-import { RecipeCard } from "../styles/RecipeCard";
 
 export const UsersRecipe = () => {
   const recipes = useGetUserRecipes();
