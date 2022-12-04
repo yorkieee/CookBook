@@ -9,11 +9,13 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { CssBaseline } from "@mui/material";
-import image from "../assets/image.jpg";
+import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
+import CommentIcon from "@mui/icons-material/Comment";
+import { CommentsAdd } from "../components/CommentsAdd";
+import { CommentsSection } from "../components/CommentsSection";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,6 +34,8 @@ export const RecipeCard = ({ recipe }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const recipeComments = useGetRecipeComments(recipe.uid);
 
   return (
     <CssBaseline>
@@ -55,7 +59,7 @@ export const RecipeCard = ({ recipe }) => {
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="share">
-            <ShareIcon />
+            <CommentIcon />
           </IconButton>
           <ExpandMore
             expand={expanded}
@@ -74,6 +78,8 @@ export const RecipeCard = ({ recipe }) => {
             <Typography paragraph>{recipe.instructions}</Typography>
           </CardContent>
         </Collapse>
+        <CommentsAdd recipe={recipe} />
+        <CommentsSection recipeComments={recipeComments} />
       </Card>
     </CssBaseline>
   );
