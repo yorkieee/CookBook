@@ -3,6 +3,7 @@ import { Container } from "@mui/system";
 import { RecipeCard } from "../styles/RecipeCard";
 import { Grid } from "@mui/material";
 import { Layout } from "../styles/Layout";
+import { SearchBar } from "../components/Search";
 
 interface ListRecipesProps {
   recipeData: Array<string>;
@@ -12,7 +13,7 @@ const ListRecipes: React.FC<ListRecipesProps> = ({ recipeData }) => {
   return (
     <Layout>
       <Container>
-        <h1> CookBook Recipes </h1>
+        <SearchBar />
         <Grid container spacing={4}>
           {recipeData.map((recipe, id) => (
             <Grid item key={id} xs={12} md={3} lg={4}>
