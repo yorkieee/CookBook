@@ -6,8 +6,7 @@ import cors from "cors";
 import { passportConfig } from "./middleware/passport.js";
 import passport from "passport";
 import * as dotenv from "dotenv";
-// import { passportConfig } from "./middleware/passport.js";
-// import passport from "passport";
+
 dotenv.config();
 
 // create express  app
@@ -26,14 +25,6 @@ app.use(
 
 app.use(passport.initialize());
 passportConfig(passport);
-
-// write first GET route for testing
-// router.get("/test", (req, res) => {
-//   res.send({ msg: "Test route is working!" });
-// });
-
-// app.use(passport.initialize());
-// passportConfig(passport);
 
 //define the port of our server
 app.listen(5001, () => {
