@@ -42,7 +42,7 @@ export const registerUser = async (req, res) => {
       email,
     ]); //Checking if email already exists
     const arr = data.rows;
-    if (arr.length != 0) {
+    if (arr.length !== 0) {
       return res.status(400).json({
         error: "Email already exists, log in with your password.",
         success: false,
