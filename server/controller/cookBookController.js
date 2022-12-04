@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { dbGetUserNameByUid } from "../db-utils/dbGetUserNameByUid.js";
 import { getAllRecipesByUid } from "../db-utils/getAllRecipesByUid.js";
 import pool from "../dbConfig.js";
@@ -18,8 +19,8 @@ export const postARecipe = async (req, res) => {
 
   try {
     const query = await pool.query(
-      "INSERT INTO recipes (title, ingredients, description, instructions, author_name) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      [title, ingredients, description, instructions, authorName]
+      "INSERT INTO recipes (title, ingredients, description, instructions, author_name, uid) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+      [title, ingredients, description, instructions, authorName, uuidv4()]
     );
 
     res.json(query.rows[0]);
