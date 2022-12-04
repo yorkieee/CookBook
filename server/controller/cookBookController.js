@@ -29,7 +29,6 @@ export const postARecipe = async (req, res) => {
 };
 
 export const getUsersRecipe = async (req, res) => {
-  console.log(req.query.id);
   const uid = req.query.id;
   try {
     const usersRecipes = await getAllRecipesByUid(uid);
