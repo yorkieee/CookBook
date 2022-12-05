@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@mui/system";
-import { RecipeCard } from "../styles/RecipeCard";
+import { RecipeCard } from "../Pages/RecipeCard";
 import { Grid } from "@mui/material";
 import { Layout } from "../styles/Layout";
 import { SearchBar } from "../components/Search";
