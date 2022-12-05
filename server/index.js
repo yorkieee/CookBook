@@ -7,6 +7,8 @@ import cors from "cors";
 import { passportConfig } from "./middleware/passport.js";
 import passport from "passport";
 import * as dotenv from "dotenv";
+import { dbGetUserNameByUid } from "./db-utils/dbGetUserNameByUid.js";
+import pool from "./dbConfig.js";
 
 dotenv.config();
 
@@ -37,4 +39,17 @@ app.use("", usersRoutes);
 app.use("", commentsRoutes);
 app.use("", favouritesRoutes);
 
+// const getFavouritesByUid = async (uid) => {
+//   const user = await dbGetUserNameByUid(uid);
+//   const data = await pool.query(
+//     "SELECT recipe_id, title, description, ingredients, description,  favourites.id, favourites.author_name FROM recipes, favourites WHERE (recipes.uid = favourites.for_recipe_uid) AND (favourites.author_name = $1)"[
+//       user
+//     ]
+//   );
+//   const favourites = data.rows;
+//   console.log("response", favourites);
+
+// return favourites;
+// };
+// getFavouritesByUid();
 export default app;
