@@ -16,6 +16,7 @@ import { AddRecipe } from "./Pages/AddRecipe";
 import { UpdateProfile } from "./components/UpdateUserName";
 import theme from "./styles/theme.js";
 import { UsersRecipe } from "./Pages/UsersRecipe.js";
+import { UsersFavourites } from "./Pages/UsersFavourites.js";
 
 const App = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/newrecipe" element={<AddRecipe />}></Route>
               <Route path="/updateUsername" element={<UpdateProfile />}></Route>
               <Route path="/usersrecipe" element={<UsersRecipe />}></Route>
+              <Route path="/favourites" element={<UsersFavourites />}></Route>
             </Routes>
           </Router>
         </Layout>
