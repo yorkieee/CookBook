@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -9,6 +9,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { CssBaseline } from "@mui/material";
@@ -36,6 +37,25 @@ export const RecipeCard = ({ recipe }) => {
   };
 
   const recipeComments = useGetRecipeComments(recipe.uid);
+  const [favourite, setFavourite] = useState(false);
+
+  const isRecipeFavourited = async () => {
+    try {
+      const response = await fetch(`http://localhost:5001/favourite`);
+      const result = await response.json();
+      if (result.votes.length <= 0) {
+        setFavourite(true);
+      } else {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    isRecipeFavourited();
+  }, []);
 
   return (
     <CssBaseline>
@@ -56,7 +76,9 @@ export const RecipeCard = ({ recipe }) => {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+            <CardActions>
+              {!favourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </CardActions>
           </IconButton>
           <IconButton aria-label="share">
             <CommentIcon />
@@ -70,6 +92,7 @@ export const RecipeCard = ({ recipe }) => {
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
+
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Ingredients:</Typography>
