@@ -1,6 +1,7 @@
 import express from "express";
 import cookbookRoutes from "./routes/cookbookRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
+import favouritesRoutes from "./routes/favouritesRoutes.js";
 import commentsRoutes from "./routes/commentsRoutes.js";
 import cors from "cors";
 import { passportConfig } from "./middleware/passport.js";
@@ -34,5 +35,6 @@ app.listen(5001, () => {
 app.use("", cookbookRoutes);
 app.use("", usersRoutes);
 app.use("", commentsRoutes);
+app.use("", favouritesRoutes);
 
 export default app;
