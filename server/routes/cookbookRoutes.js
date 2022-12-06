@@ -18,7 +18,7 @@ router.get("/recipes", getAllRecipes);
 router.get("/usersrecipe", authMiddleware, getUsersRecipe);
 router.put("/recipes/:id", updateRecipe);
 router.delete("/recipes/:id", deleteRecipe);
-router.get("/recipes/:id", getRecipeById);
+router.get("/recipe", getRecipeById);
 
 export default router;
 

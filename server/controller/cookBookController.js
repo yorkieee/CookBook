@@ -42,12 +42,13 @@ export const getUsersRecipe = async (req, res) => {
 };
 
 export const getRecipeById = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
+  console.log(req.query);
   try {
     const recipe = await pool.query("SELECT * FROM recipes WHERE uid = $1", [
       id,
     ]);
-    res.json(recipe);
+    res.json(recipe.rows);
   } catch (err) {
     console.log(err.message);
   }
