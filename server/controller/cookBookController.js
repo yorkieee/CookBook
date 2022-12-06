@@ -41,6 +41,18 @@ export const getUsersRecipe = async (req, res) => {
   }
 };
 
+export const getRecipeById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const recipe = await pool.query("SELECT * FROM recipes WHERE uid = $1", [
+      id,
+    ]);
+    res.json(recipe);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 export const updateRecipe = async (req, res) => {
   try {
     const changeRecipe = await pool.query(

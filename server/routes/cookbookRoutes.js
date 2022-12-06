@@ -5,6 +5,7 @@ import {
   updateRecipe,
   deleteRecipe,
   getUsersRecipe,
+  getRecipeById,
 } from "../controller/cookBookController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
@@ -17,6 +18,7 @@ router.get("/recipes", getAllRecipes);
 router.get("/usersrecipe", authMiddleware, getUsersRecipe);
 router.put("/recipes/:id", updateRecipe);
 router.delete("/recipes/:id", deleteRecipe);
+router.get("/recipes/:id", getRecipeById);
 
 export default router;
 
