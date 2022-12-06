@@ -17,7 +17,7 @@ import { UpdateProfile } from "./components/UpdateUserName";
 import theme from "./styles/theme.js";
 import { UsersRecipe } from "./Pages/UsersRecipe.js";
 import { UsersFavourites } from "./Pages/UsersFavourites.js";
-import { GetRecipesById } from "./Pages/GetRecipesById.js";
+import { RecipeDetails } from "./Pages/RecipeDetails.js";
 
 const App = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -35,15 +35,18 @@ const App = () => {
                 path="/recipes"
                 element={<ListRecipes recipeData={recipeData} />}
               />
-              <Route path="/signup" element={<SignUp />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
-              <Route path="/logout" element={<Logout />}></Route>
-              <Route path="/newrecipe" element={<AddRecipe />}></Route>
-              <Route path="/updateUsername" element={<UpdateProfile />}></Route>
-              <Route path="/usersrecipe" element={<UsersRecipe />}></Route>
-              <Route path="/favourites" element={<UsersFavourites />}></Route>
-              <Route path="/recipes" element={<GetRecipesById />}></Route>
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/newrecipe" element={<AddRecipe />} />
+              <Route path="/updateUsername" element={<UpdateProfile />} />
+              <Route path="/usersrecipe" element={<UsersRecipe />} />
+              <Route path="/favourites" element={<UsersFavourites />} />
+              <Route
+                path="/recipe/:recipeId"
+                element={<RecipeDetails />}
+              ></Route>
             </Routes>
           </Router>
         </Layout>
