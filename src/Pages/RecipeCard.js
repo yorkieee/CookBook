@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -17,6 +17,7 @@ import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
 import CommentIcon from "@mui/icons-material/Comment";
 import { CommentsAdd } from "../components/CommentsAdd";
 import { CommentsSection } from "../components/CommentsSection";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -36,26 +37,11 @@ export const RecipeCard = ({ recipe }) => {
     setExpanded(!expanded);
   };
 
+  const navigate = useNavigate();
+
+  const recipeId = recipe.uid;
+
   const recipeComments = useGetRecipeComments(recipe.uid);
-  const [favourite, setFavourite] = useState(false);
-
-  const isRecipeFavourited = async () => {
-    try {
-      const response = await fetch(`http://localhost:5001/favourite`);
-      const result = await response.json();
-      if (result.votes.length <= 0) {
-        setFavourite(true);
-      } else {
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    isRecipeFavourited();
-  }, []);
 
   return (
     <CssBaseline>
@@ -77,10 +63,15 @@ export const RecipeCard = ({ recipe }) => {
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <CardActions>
-              {!favourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              <FavoriteIcon></FavoriteIcon> <FavoriteBorderIcon />
             </CardActions>
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton
+            aria-label=" add comment"
+            onClick={() => {
+              navigate(`/recipe/${recipeId}`);
+            }}
+          >
             <CommentIcon />
           </IconButton>
           <ExpandMore
