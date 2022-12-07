@@ -177,10 +177,6 @@ export const Navbar = () => {
             CookBook
           </Button>
 
-          <Link to="/recipes" style={linkStyle}>
-            Recipes
-          </Link>
-
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton

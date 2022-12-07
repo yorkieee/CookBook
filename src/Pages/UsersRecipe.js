@@ -51,14 +51,7 @@ export const UsersRecipe = () => {
         {recipes.map((recipe, id) => (
           <Grid item key={id} xs={12} md={3} lg={4}>
             <Card sx={{ maxWidth: 345 }}>
-              <CardHeader
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={recipe.title}
-              />
+              <CardHeader title={recipe.title} />
               <CardMedia
                 component="img"
                 height="194"
@@ -71,11 +64,7 @@ export const UsersRecipe = () => {
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <CardActions>
-                    <FavoriteIcon></FavoriteIcon> <FavoriteBorderIcon />
-                  </CardActions>
-                </IconButton>
+                <IconButton aria-label="add to favorites"></IconButton>
 
                 <ExpandMore
                   expand={expanded}
