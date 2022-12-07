@@ -43,14 +43,7 @@ export const RecipeCard = ({ recipe }) => {
   return (
     <CssBaseline>
       <Card sx={{ maxWidth: 345 }}>
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={recipe.title}
-        />
+        <CardHeader title={recipe.title} />
         <CardMedia component="img" height="194" src={recipe.image} alt="" />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
@@ -64,6 +57,7 @@ export const RecipeCard = ({ recipe }) => {
             </CardActions>
           </IconButton>
           <IconButton
+            color="primary"
             aria-label=" add comment"
             onClick={() => {
               navigate(`/recipe/${recipeId}`);
@@ -72,6 +66,7 @@ export const RecipeCard = ({ recipe }) => {
             <CommentIcon />
           </IconButton>
           <ExpandMore
+            color="secondary"
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
