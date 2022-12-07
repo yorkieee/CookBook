@@ -13,7 +13,6 @@ export const CommentsSection = ({ recipeComments }: any) => {
     <div>
       <Typography style={style}>{"All Commments: "}</Typography>
       {recipeComments.map((comment: any) => (
-        // <p>{comment.authorId}</p>
         <p>{comment.comment}</p>
       ))}
     </div>
