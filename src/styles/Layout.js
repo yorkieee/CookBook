@@ -1,23 +1,26 @@
-import React from "react";
-import { CssBaseline } from "@mui/material";
-import image from "../assets/image.jpg";
+import { CssBaseline, Box } from "@mui/material";
+// import image from "../assets/image.jpg";
 
 export const Layout = ({ children }) => {
   return (
     <CssBaseline>
-      <div
-        className="image"
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          height: "100%",
-          width: "100%",
-          position: "absolute",
-        }}
-      >
+      <Box sx={{ bgcolor: "white", width: "100vw", height: "100vh" }}>
         {children}
-      </div>
+      </Box>
     </CssBaseline>
   );
 };
+
+// <Box
+//         className="image"
+//         style={{
+//           backgroundImage: `url(${image})`,
+//           backgroundSize: "cover",
+//           backgroundRepeat: "no-repeat",
+//           // position: "fixed",
+//         }}
+//       >
+//         {children}
+//       </Box>
+
+// <Box sx={{ bgcolor: "#37474f", width: "100vw", height: "100vh" }}>
