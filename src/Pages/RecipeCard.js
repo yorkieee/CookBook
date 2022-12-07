@@ -17,7 +17,7 @@ import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
 import CommentIcon from "@mui/icons-material/Comment";
 import { CommentsAdd } from "../components/CommentsAdd";
 import { CommentsSection } from "../components/CommentsSection";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -40,8 +40,6 @@ export const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
 
   const recipeId = recipe.uid;
-
-  const recipeComments = useGetRecipeComments(recipe.uid);
 
   return (
     <CssBaseline>
@@ -92,8 +90,6 @@ export const RecipeCard = ({ recipe }) => {
             <Typography paragraph>{recipe.instructions}</Typography>
           </CardContent>
         </Collapse>
-        <CommentsAdd recipe={recipe} />
-        <CommentsSection recipeComments={recipeComments} />
       </Card>
     </CssBaseline>
   );
