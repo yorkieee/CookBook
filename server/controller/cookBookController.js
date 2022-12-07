@@ -13,14 +13,15 @@ export const getAllRecipes = async (req, res) => {
 };
 
 export const postARecipe = async (req, res) => {
-  const { title, ingredients, description, instructions, authorUid } = req.body;
-
+  const { title, ingredients, description, instructions, authorUid, image } =
+    req.body;
+  const uid = uuidv4();
   const authorName = await dbGetUserNameByUid(authorUid);
 
   try {
     const query = await pool.query(
-      "INSERT INTO recipes (title, ingredients, description, instructions, author_name, uid) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-      [title, ingredients, description, instructions, authorName, uuidv4()]
+      "INSERT INTO recipes (title, ingredients, description, instructions, author_name, image, uid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [title, ingredients, description, instructions, authorName, image, uid]
     );
 
     res.json(query.rows[0]);
