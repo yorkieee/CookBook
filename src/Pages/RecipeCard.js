@@ -13,10 +13,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { CssBaseline } from "@mui/material";
-import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
+
 import CommentIcon from "@mui/icons-material/Comment";
-import { CommentsAdd } from "../components/CommentsAdd";
-import { CommentsSection } from "../components/CommentsSection";
+
 import { useNavigate } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
