@@ -121,7 +121,7 @@ export const Navbar = () => {
         <IconButton size="large" color="primary">
           <StickyNote2Icon />
 
-          <Link style={linkStyle} to="/usersrecepies">
+          <Link style={linkStyle} to="/usersrecipes">
             My recipies
           </Link>
         </IconButton>
