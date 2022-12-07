@@ -1,3 +1,4 @@
+import { Button, TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { postRecipeComment } from "../backend-requests/postRecipeComment";
 import { AuthContext } from "../context/AuthContext";
@@ -21,12 +22,27 @@ export const CommentsAdd = ({ recipe }: any) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input
+      <TextField
+        id="comment"
+        label="Add your comment"
+        variant="outlined"
+        color="secondary"
         value={state}
         onChange={(e) => setState(e.target.value)}
         type={"text"}
+        fullWidth
+        margin="normal"
       />
-      <button type="submit">{"submit"}</button>
+
+      <Button
+        variant="contained"
+        fullWidth
+        color="secondary"
+        sx={{ mt: 3, mb: 2 }}
+        type="submit"
+      >
+        {"submit"}
+      </Button>
     </form>
   );
 };
