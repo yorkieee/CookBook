@@ -1,59 +1,62 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  CssBaseline,
+  IconButton,
+  Typography,
+  Box,
+} from "@mui/material";
+import { CommentsSection } from "../components/CommentsSection";
+import { CommentsAdd } from "../components/CommentsAdd";
 
-const backendUrl = "http://localhost:5001";
+import { useGetRecipeById } from "../hooks/useGetRecipeById";
 
-const useGetRecipeById = () => {
-  const [recipes, setRecipes] = useState([]);
+import CommentIcon from "@mui/icons-material/Comment";
 
-  const { recipeId } = useParams();
-
-  const getRecipes = async () => {
-    try {
-      const options = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-        method: "GET",
-      };
-      const data = await axios.get(
-        `${backendUrl}/recipe/?id=${recipeId}`,
-        options
-      );
-      if (data.data) {
-        console.log("recipes", data.data);
-        return data.data;
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-  // getRecipes();
-
-  useEffect(() => {
-    const fetch = async () => {
-      const fetchedRecipes = await getRecipes();
-      setRecipes(fetchedRecipes);
-    };
-    fetch();
-  }, []);
-
-  return recipes;
-};
+import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
 
 export const RecipeDetails = () => {
   const recipe = useGetRecipeById()[0];
+  const { recipeId } = useParams();
+  const recipeComments = useGetRecipeComments(recipeId);
 
   if (!recipe) return <h1>{"...loading"}</h1>;
 
-  const { title, ingredients, description } = recipe;
+  const { title, ingredients, instructions } = recipe;
 
   return (
-    <div>
-      <p>{title}</p>
-      <p>{ingredients}</p>
-      <p>{description}</p>
-    </div>
+    <CssBaseline>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+
+          backgroundColor: "none",
+
+          mb: 4,
+          mt: { sx: 4, sm: 10, lg: 3 },
+        }}
+      >
+        <Card sx={{ minWidth: 345 }}>
+          <CardHeader title={title} />
+          <CardMedia component="img" height="154" src={recipe.image} alt="" />
+
+          <Typography paragraph>Ingredients:</Typography>
+          <Typography paragraph>{ingredients}</Typography>
+          <Typography paragraph>How to cook:</Typography>
+          <Typography paragraph>{instructions}</Typography>
+
+          <CardContent>
+            <CommentsAdd recipe={recipe} />
+            <CommentsSection recipeComments={recipeComments} />
+          </CardContent>
+        </Card>
+      </Box>
+    </CssBaseline>
   );
 };
