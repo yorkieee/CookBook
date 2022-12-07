@@ -39,16 +39,16 @@ export const RecipeDetails = () => {
           backgroundColor: "none",
 
           mb: 4,
-          mt: { sx: 4, sm: 10, lg: 3 },
+          mt: { sx: 4, sm: 10, lg: 2 },
         }}
       >
-        <Card sx={{ minWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }}>
           <CardHeader title={title} />
           <CardMedia component="img" height="154" src={recipe.image} alt="" />
 
-          <Typography paragraph>Ingredients:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Ingredients:</Typography>
           <Typography paragraph>{ingredients}</Typography>
-          <Typography paragraph>How to cook:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>How to cook:</Typography>
           <Typography paragraph>{instructions}</Typography>
 
           <CardContent>
