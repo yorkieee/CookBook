@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -12,7 +11,13 @@ import StickyNote2Icon from "@mui/icons-material/StickyNote2";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useNavigate } from "react-router-dom";
 import { Logout } from "./Logout";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+
 import { FavoriteOutlined } from "@mui/icons-material";
+import { AuthContext } from "../context/AuthContext";
+
+// const { user } = React.useContext(AuthContext);
+// const navigate = useNavigate();
 
 export const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,8 +47,9 @@ export const Navbar = () => {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "white",
-    size: "large",
+    color: "black",
+    fontSize: "medium",
+    font: "Helvetica",
   };
 
   const menuId = "primary-search-account-menu";
@@ -64,18 +70,18 @@ export const Navbar = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link style={{ linkStyle }} to="/signup">
+        <Link style={linkStyle} to="/signup">
           Sign Up
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         {" "}
-        <Link style={{ linkStyle }} to="/login">
+        <Link style={linkStyle} to="/login">
           Log In{" "}
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link style={{ linkStyle }} to="/profile">
+        <Link style={linkStyle} to="/profile">
           Profile
         </Link>
       </MenuItem>
@@ -103,24 +109,32 @@ export const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={2} color="error">
-            <StickyNote2Icon />
-          </Badge>
+        <IconButton size="large" color="primary">
+          <MenuBookIcon />
+          <Link style={linkStyle} to="/recipes">
+            All Recipes
+          </Link>
         </IconButton>
-        <p>My recipes</p>
       </MenuItem>
+
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 1 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={1} color="error">
-            <FavoriteOutlined />
-          </Badge>
+        <IconButton size="large" color="primary">
+          <StickyNote2Icon />
+
+          <Link style={linkStyle} to="/usersrecepies">
+            My recipies
+          </Link>
         </IconButton>
-        <p>Favourite recipes</p>
+      </MenuItem>
+
+      <MenuItem>
+        <IconButton size="large" color="primary">
+          <FavoriteOutlined />
+          <Link style={linkStyle} to="/favourites">
+            {" "}
+            Favourite recipes
+          </Link>
+        </IconButton>
       </MenuItem>
 
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -129,7 +143,7 @@ export const Navbar = () => {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="primary"
         >
           <AccountCircle />
         </IconButton>
@@ -163,11 +177,10 @@ export const Navbar = () => {
             CookBook
           </Button>
 
-          <li>
-            <Link to="/recipes" style={linkStyle}>
-              Recipes
-            </Link>
-          </li>
+          <Link to="/recipes" style={linkStyle}>
+            Recipes
+          </Link>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
