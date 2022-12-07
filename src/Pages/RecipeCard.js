@@ -53,7 +53,7 @@ export const RecipeCard = ({ recipe }) => {
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <CardActions>
-              <FavoriteIcon></FavoriteIcon> <FavoriteBorderIcon />
+              <FavoriteBorderIcon />
             </CardActions>
           </IconButton>
           <IconButton
@@ -78,9 +78,9 @@ export const RecipeCard = ({ recipe }) => {
 
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Ingredients:</Typography>
+            <Typography sx={{ fontWeight: "bold" }}>Ingredients:</Typography>
             <Typography paragraph>{recipe.ingredients}</Typography>
-            <Typography paragraph>How to cook:</Typography>
+            <Typography sx={{ fontWeight: "bold" }}>How to cook:</Typography>
             <Typography paragraph>{recipe.instructions}</Typography>
           </CardContent>
         </Collapse>
