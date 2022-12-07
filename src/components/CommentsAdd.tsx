@@ -41,7 +41,7 @@ export const CommentsAdd = ({ recipe }: any) => {
         sx={{ mt: 3, mb: 2 }}
         type="submit"
       >
-        {"submit"}
+        {"Add Comment"}
       </Button>
     </form>
   );
