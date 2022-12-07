@@ -1,9 +1,30 @@
 import React, { FormEvent, useState, useContext } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
+const Copyright = (props: any) => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {`CookBook © ${currentYear}.`}
+    </Typography>
+  );
+};
+
+// const onClick = () => {
+//   logout();
+//   navigate("/");
+// };
 
 const backendUrl = "http://localhost:5001";
 
@@ -12,8 +33,11 @@ export const AddRecipe = () => {
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
+  const [image, setImage] = useState("");
   const { user } = useContext(AuthContext);
   const uid = user?.user.uid;
+
+  const navigate = useNavigate();
 
   const onSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
@@ -24,6 +48,7 @@ export const AddRecipe = () => {
         ingredients,
         instructions,
         authorUid: uid,
+        image,
       };
       const response = await fetch(`${backendUrl}/newrecipe`, {
         method: "POST",
@@ -37,6 +62,7 @@ export const AddRecipe = () => {
     } catch (err: any) {
       console.log(err.message);
     }
+    navigate("/usersrecipe");
   };
 
   return (
@@ -94,6 +120,18 @@ export const AddRecipe = () => {
               />
             </Grid>
             <Grid item xs={12}>
+              <label htmlFor="image"></label>
+              <TextField
+                onChange={(e) => setImage(e.target.value)}
+                label="Image url"
+                multiline
+                maxRows={2}
+                required
+                fullWidth
+                value={image}
+              />
+            </Grid>
+            <Grid item xs={12}>
               <Button
                 variant="contained"
                 fullWidth
@@ -105,9 +143,10 @@ export const AddRecipe = () => {
               </Button>
             </Grid>
           </Grid>
+          <br></br>
+          <Copyright />
         </form>
       </Container>
-      <br></br>
     </React.Fragment>
   );
 };
