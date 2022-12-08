@@ -1,5 +1,7 @@
-import { Button } from "@mui/material";
 import { useFavouritesHandlers } from "../hooks/useFavouritesHandlers";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import IconButton from "@mui/material/IconButton";
 
 export const FavouriteButton = ({ isLiked, recipeId, setIsFetched }: any) => {
   const { postFavourite, deleteFavourite } = useFavouritesHandlers(recipeId);
@@ -17,11 +19,12 @@ export const FavouriteButton = ({ isLiked, recipeId, setIsFetched }: any) => {
   };
 
   return (
-    <Button
-      sx={{ bakgroundColor: isLiked ? "geen" : "white" }}
-      onClick={handleLike}
-    >
-      {isLiked ? "LIKED" : "UNLIKED"}
-    </Button>
+    <IconButton onClick={handleLike}>
+      {isLiked ? (
+        <FavoriteIcon sx={{ color: "red" }} />
+      ) : (
+        <FavoriteBorderIcon />
+      )}
+    </IconButton>
   );
 };
