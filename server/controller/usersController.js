@@ -161,10 +161,7 @@ export const getUserProfile = async (req, res) => {
   const id = req.query.id;
 
   try {
-    const user = await pool.query(
-      `SELECT name, email FROM users WHERE id = $1`,
-      [id]
-    );
+    const user = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
 
     res.status(200).json({
       user: user.rows[0],
