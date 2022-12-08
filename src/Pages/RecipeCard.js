@@ -51,7 +51,7 @@ export const RecipeCard = ({ recipe, isLiked }) => {
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <CardActions>
-              <FavouriteButton isLiked={isLiked} />
+              <FavouriteButton isLiked={isLiked} recipeId={recipeId} />
             </CardActions>
           </IconButton>
           <IconButton
