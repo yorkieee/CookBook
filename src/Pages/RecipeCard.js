@@ -45,7 +45,7 @@ export const RecipeCard = ({
 
   return (
     <CssBaseline>
-      <Card sx={{ height: 400 }} sm={{ maxWidth: 345 }}>
+      <Card sx={{ minHeight: 400 }} sm={{ maxWidth: 345 }}>
         <CardHeader title={recipe.title} />
         <CardMedia component="img" height="194" src={recipe.image} alt="" />
         <CardContent>
