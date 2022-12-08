@@ -38,7 +38,14 @@ const App = () => {
               />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/logout" element={<Logout />} />
               <Route path="/newrecipe" element={<AddRecipe />} />
               <Route path="/updateUsername" element={<UpdateProfile />} />
