@@ -12,7 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CommentIcon from "@mui/icons-material/Comment";
 
 import { styled } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
 
 import { FavouriteButton } from "../components/FavouriteButton";
 
@@ -45,7 +45,7 @@ export const RecipeCard = ({
 
   return (
     <CssBaseline>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ height: 400 }} sm={{ maxWidth: 345 }}>
         <CardHeader title={recipe.title} />
         <CardMedia component="img" height="194" src={recipe.image} alt="" />
         <CardContent>
@@ -53,18 +53,18 @@ export const RecipeCard = ({
             {recipe.description}
           </Typography>
         </CardContent>
+
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <CardActions>
-              {isLikesFetched && (
-                <FavouriteButton
-                  setIsFetched={setIsFetched}
-                  isLiked={isLiked}
-                  recipeId={recipeId}
-                />
-              )}
-            </CardActions>
-          </IconButton>
+          {isLikesFetched && (
+            <IconButton aria-label="add to favorites">
+              <FavouriteButton
+                setIsFetched={setIsFetched}
+                isLiked={isLiked}
+                recipeId={recipeId}
+              />
+            </IconButton>
+          )}
+
           <IconButton
             color="primary"
             aria-label=" add comment"
@@ -74,6 +74,7 @@ export const RecipeCard = ({
           >
             <CommentIcon />
           </IconButton>
+
           <ExpandMore
             color="secondary"
             expand={expanded}
