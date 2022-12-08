@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,15 +8,13 @@ import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { CssBaseline } from "@mui/material";
-
 import CommentIcon from "@mui/icons-material/Comment";
 
-import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+
+import { FavouriteButton } from "../components/FavouriteButton";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,7 +27,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export const RecipeCard = ({ recipe }) => {
+export const RecipeCard = ({ recipe, isLiked }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -53,7 +51,7 @@ export const RecipeCard = ({ recipe }) => {
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <CardActions>
-              <FavoriteBorderIcon />
+              <FavouriteButton isLiked={isLiked} />
             </CardActions>
           </IconButton>
           <IconButton
