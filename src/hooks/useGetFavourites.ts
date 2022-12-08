@@ -1,14 +1,13 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import { useUserId } from "./useUserId";
 
 const backendUrl = "http://localhost:5001";
 
 export const useGetFavourites = () => {
   const [favourites, setFavourites] = useState([]);
 
-  const { user } = useContext(AuthContext);
-  const uid = user?.user.uid;
+  const uid = useUserId();
 
   const getFavourites = async () => {
     try {
