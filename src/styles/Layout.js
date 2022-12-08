@@ -10,17 +10,3 @@ export const Layout = ({ children }) => {
     </CssBaseline>
   );
 };
-
-// <Box
-//         className="image"
-//         style={{
-//           backgroundImage: `url(${image})`,
-//           backgroundSize: "cover",
-//           backgroundRepeat: "no-repeat",
-//           // position: "fixed",
-//         }}
-//       >
-//         {children}
-//       </Box>
-
-// <Box sx={{ bgcolor: "#37474f", width: "100vw", height: "100vh" }}>
