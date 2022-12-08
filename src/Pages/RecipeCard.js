@@ -27,7 +27,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export const RecipeCard = ({ recipe, isLiked }) => {
+export const RecipeCard = ({
+  recipe,
+  isLiked,
+  isLikesFetched,
+  setIsFetched,
+}) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -51,7 +56,13 @@ export const RecipeCard = ({ recipe, isLiked }) => {
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <CardActions>
-              <FavouriteButton isLiked={isLiked} recipeId={recipeId} />
+              {isLikesFetched && (
+                <FavouriteButton
+                  setIsFetched={setIsFetched}
+                  isLiked={isLiked}
+                  recipeId={recipeId}
+                />
+              )}
             </CardActions>
           </IconButton>
           <IconButton

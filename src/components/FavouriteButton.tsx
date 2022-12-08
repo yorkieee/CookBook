@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useFavouritesHandlers } from "../hooks/useFavouritesHandlers";
 
-export const FavouriteButton = ({ isLiked, recipeId }: any) => {
+export const FavouriteButton = ({ isLiked, recipeId, setIsFetched }: any) => {
   const { postFavourite, deleteFavourite } = useFavouritesHandlers(recipeId);
 
   const handleLike = (e: any) => {
@@ -9,8 +9,10 @@ export const FavouriteButton = ({ isLiked, recipeId }: any) => {
 
     if (isLiked) {
       deleteFavourite();
+      setIsFetched(false);
     } else {
       postFavourite();
+      setIsFetched(false);
     }
   };
 

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "@mui/system";
 import { RecipeCard } from "../Pages/RecipeCard";
 import { Grid } from "@mui/material";
 import { Layout } from "../styles/Layout";
 import { SearchBar } from "../components/Search";
-import { useGetFavourites } from "../hooks/useGetFavourites";
+import { useHandleFavourites } from "../hooks/useHandleFavourites";
 
 const ListRecipes: React.FC<any> = ({ recipeData }) => {
-  const favourites = useGetFavourites();
+  const { favourites, isFetched, setIsFetched } = useHandleFavourites();
 
   return (
     <Layout>
@@ -25,7 +25,12 @@ const ListRecipes: React.FC<any> = ({ recipeData }) => {
 
             return (
               <Grid item key={id} xs={12} md={3} lg={4}>
-                <RecipeCard isLiked={isLiked} recipe={recipe} />
+                <RecipeCard
+                  isLikesFetched={isFetched}
+                  setIsFetched={setIsFetched}
+                  isLiked={isLiked}
+                  recipe={recipe}
+                />
               </Grid>
             );
           })}

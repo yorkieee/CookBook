@@ -10,7 +10,7 @@ import {
 import { useHandleFavourites } from "../hooks/useHandleFavourites";
 
 export const UsersFavourites = () => {
-  const favourites = useHandleFavourites();
+  const { favourites } = useHandleFavourites();
 
   return (
     <Container sx={{ marginTop: 8 }}>
