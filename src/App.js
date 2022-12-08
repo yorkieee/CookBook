@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./Pages/Landingpage.js";
-import { Navbar } from "./components/Navbar";
 import ListRecipes from "./Pages/ListRecipes";
 import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider } from "@mui/material/styles";
@@ -14,7 +13,7 @@ import { AddRecipe } from "./Pages/AddRecipe";
 import { UpdateProfile } from "./components/UpdateUserName";
 import theme from "./styles/theme.js";
 import { UsersRecipe } from "./Pages/UsersRecipe.js";
-import { UsersFavourites } from "./Pages/UsersFavourites.js";
+import { UsersFavourites } from "./Pages/UsersFavourites";
 import { RecipeDetails } from "./Pages/RecipeDetails.js";
 import { ProtectedRoute } from "./utils/ProtectedRoute.js";
 import { CssBaseline } from "@mui/material";

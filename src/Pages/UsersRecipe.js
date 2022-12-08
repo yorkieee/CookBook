@@ -42,10 +42,18 @@ export const UsersRecipe = () => {
     <Layout>
       <Container>
         <SearchBar />
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           {recipes.map((recipe, id) => (
-            <Grid item key={id} xs={12} md={3} lg={4}>
-              <Card sx={{ maxWidth: 345 }}>
+            <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  minHeight: 400,
+                  maxWidth: { sm: "345", md: "auto" },
+                }}
+              >
                 <CardHeader title={recipe.title} />
                 <CardMedia
                   component="img"

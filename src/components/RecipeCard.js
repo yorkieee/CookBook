@@ -50,8 +50,8 @@ export const RecipeCard = ({
         flexDirection: "column",
         justifyContent: "space-between",
         minHeight: 400,
+        maxWidth: { sm: "345", md: "auto" },
       }}
-      sm={{ maxWidth: 345 }}
     >
       <Box>
         <CardHeader title={recipe.title} />
