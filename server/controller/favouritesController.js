@@ -33,7 +33,7 @@ export const getFavouritesByUid = async (req, res) => {
   const uid = req.query.uid;
   try {
     const data = await pool.query(
-      `SELECT recipe_id, title, description, ingredients, description, instructions, favourites.id, favourites.user_id FROM recipes, favourites WHERE (recipes.uid = favourites.for_recipe_uid) AND (favourites.user_id = $1)`,
+      `SELECT * FROM recipes, favourites WHERE (recipes.uid = favourites.for_recipe_uid) AND (favourites.user_id = $1)`,
       [uid]
     );
     res.json(data.rows);
