@@ -18,6 +18,7 @@ import theme from "./styles/theme.js";
 import { UsersRecipe } from "./Pages/UsersRecipe.js";
 import { UsersFavourites } from "./Pages/UsersFavourites.js";
 import { RecipeDetails } from "./Pages/RecipeDetails.js";
+import { ProtectedRoute } from "./utils/ProtectedRoute.js";
 
 const App = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -41,8 +42,22 @@ const App = () => {
               <Route path="/logout" element={<Logout />} />
               <Route path="/newrecipe" element={<AddRecipe />} />
               <Route path="/updateUsername" element={<UpdateProfile />} />
-              <Route path="/usersrecipe" element={<UsersRecipe />} />
-              <Route path="/favourites" element={<UsersFavourites />} />
+              <Route
+                path="/usersrecipe"
+                element={
+                  <ProtectedRoute>
+                    <UsersRecipe />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/favourites"
+                element={
+                  <ProtectedRoute>
+                    <UsersFavourites />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/recipe/:recipeId"
                 element={<RecipeDetails />}
