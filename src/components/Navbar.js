@@ -14,10 +14,6 @@ import { Logout } from "./Logout";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 import { FavoriteOutlined } from "@mui/icons-material";
-import { AuthContext } from "../context/AuthContext";
-
-// const { user } = React.useContext(AuthContext);
-// const navigate = useNavigate();
 
 export const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
