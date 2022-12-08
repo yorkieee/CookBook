@@ -42,9 +42,3 @@ export const UsersFavourites = () => {
     </Container>
   );
 };
-
-//         <h1 key={id}>\{recipe.title}</h1>
-//       ))}
-//     </div>
-//   );
-// };
