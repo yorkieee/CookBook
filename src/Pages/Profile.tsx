@@ -1,12 +1,59 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Box, Button } from "@mui/material";
-import { CssBaseline } from "@mui/material";
+import { Container, Box, Button, Typography } from "@mui/material";
 import { Logout } from "../components/Logout";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@mui/material";
-import { UpdateProfile } from "../components/UpdateUserName";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Layout } from "../styles/Layout";
+
+const ButtonBox = () => {
+  const navigate = useNavigate();
+
+  const buttonStyle = {
+    borderColor: "primary",
+    border: "2px solid",
+    backgroundColor: "white",
+    cursor: "pointer",
+    minWidth: "100px",
+    height: { xs: "48px", sm: "40px" },
+  };
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
+        justifyContent: "space-between",
+        height: { xs: "160px", sm: "auto" },
+      }}
+    >
+      <Button
+        sx={buttonStyle}
+        onClick={() => {
+          navigate(`/newrecipe`);
+        }}
+      >
+        {"Add a recipe"}
+      </Button>
+      <Button
+        sx={buttonStyle}
+        onClick={() => {
+          navigate(`/usersrecipe`);
+        }}
+      >
+        {"My recipes"}
+      </Button>
+      <Button
+        sx={buttonStyle}
+        onClick={() => {
+          navigate(`/favourites`);
+        }}
+      >
+        {"My Favourites"}
+      </Button>
+    </Box>
+  );
+};
 
 export const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -18,79 +65,51 @@ export const Profile = () => {
   }
 
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
-      sx={{ backgroundColor: "white", borderRadius: 5 }}
-    >
-      <CssBaseline />
-      <Box
+    <Layout>
+      <Container
+        component="main"
+        maxWidth="xs"
         sx={{
-          marginTop: 8,
           display: "flex",
+          padding: "24px",
           flexDirection: "column",
-          alignItems: "center",
+          justifyContent: "space-between",
+          marginTop: "64px",
+          backgroundColor: "white",
+          borderRadius: "8px",
+          border: "1px solid black",
+          height: { xs: "400px", sm: "250px" },
         }}
-      ></Box>
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          {/* <UpdateProfile /> */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 2,
+            }}
+          >
+            <Avatar sx={{ width: 22, height: 22 }} />
+            <Typography
+              sx={{ fontFamily: "Helvetica" }}
+            >{`Welcome ${user?.user.name}!`}</Typography>
+            {/* <p>{`Your email is ${user?.user.email}`}</p> */}
+          </Box>
+          <Logout />
+        </Box>
 
-      <Box
-        sx={{
-          marginTop: 4,
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        <UpdateProfile />
-        {/* <Avatar sx={{ width: 24, height: 24 }}>A</Avatar> */}
-        <Logout />
-      </Box>
-      <Box
-        sx={{
-          marginTop: 4,
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        <p>{`Welcome ${user?.user.name}!`}</p>
-        <p>{`Your email is ${user?.user.email}`}</p>
-      </Box>
-
-      <p>
-        Add your favourite recipes and share them with other cook enthusiasts!
-      </p>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        <Button
-          onClick={() => {
-            navigate(`/newrecipe`);
-          }}
-        >
-          Add a recipe
-        </Button>
-        <Button
-          onClick={() => {
-            navigate(`/usersrecipe`);
-          }}
-        >
-          {" "}
-          My recipes{" "}
-        </Button>
-        <Button
-          onClick={() => {
-            navigate(`/favourites`);
-          }}
-        >
-          {" "}
-          My <FavoriteIcon />{" "}
-        </Button>
-      </Box>
-    </Container>
+        <Typography sx={{ fontFamily: "Helvetica", font: 12 }}>
+          Add your favourite recipes and share them with other cook enthusiasts!
+        </Typography>
+        <ButtonBox />
+      </Container>
+    </Layout>
   );
 };

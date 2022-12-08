@@ -5,7 +5,6 @@ import { Navbar } from "./components/Navbar";
 import ListRecipes from "./Pages/ListRecipes";
 import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider } from "@mui/material/styles";
-import { Layout } from "./styles/Layout";
 import { SignUp } from "./Pages/SignUp.tsx";
 import { Login } from "./Pages/Login";
 import { Profile } from "././Pages/Profile";
@@ -18,6 +17,7 @@ import { UsersRecipe } from "./Pages/UsersRecipe.js";
 import { UsersFavourites } from "./Pages/UsersFavourites.js";
 import { RecipeDetails } from "./Pages/RecipeDetails.js";
 import { ProtectedRoute } from "./utils/ProtectedRoute.js";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -26,9 +26,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AuthContextProvider>
-        <Layout>
+        <CssBaseline>
           <Router>
-            <Navbar />
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route
@@ -70,7 +69,7 @@ const App = () => {
               ></Route>
             </Routes>
           </Router>
-        </Layout>
+        </CssBaseline>
       </AuthContextProvider>
     </ThemeProvider>
   );

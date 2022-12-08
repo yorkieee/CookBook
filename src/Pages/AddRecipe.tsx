@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Layout } from "../styles/Layout";
 
 const Copyright = (props: any) => {
   const currentYear = new Date().getFullYear();
@@ -20,11 +21,6 @@ const Copyright = (props: any) => {
     </Typography>
   );
 };
-
-// const onClick = () => {
-//   logout();
-//   navigate("/");
-// };
 
 const backendUrl = "http://localhost:5001";
 
@@ -66,7 +62,7 @@ export const AddRecipe = () => {
   };
 
   return (
-    <React.Fragment>
+    <Layout>
       <Container
         component="main"
         maxWidth="xs"
@@ -147,6 +143,6 @@ export const AddRecipe = () => {
           <Copyright />
         </form>
       </Container>
-    </React.Fragment>
+    </Layout>
   );
 };

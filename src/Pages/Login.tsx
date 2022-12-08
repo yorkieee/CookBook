@@ -14,6 +14,7 @@ import { FormControl } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Layout } from "../styles/Layout";
 
 interface State {
   password: string;
@@ -49,74 +50,76 @@ export const Login = () => {
   };
 
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
-      sx={{ backgroundColor: "white", borderRadius: 5 }}
-    >
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
+    <Layout>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ backgroundColor: "white", borderRadius: 5 }}
       >
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <FormControl required fullWidth>
-            <TextField
-              id="email"
-              label="Your email"
-              variant="outlined"
-              color="info"
-              value={values.email}
-              onChange={handleChange("email")}
-              required
-              fullWidth
-              margin="normal"
-            />
-            <FormControl>
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit}>
+            <FormControl required fullWidth>
               <TextField
-                name="password"
-                id="password"
-                label="Your password"
-                type="password"
+                id="email"
+                label="Your email"
+                variant="outlined"
+                color="info"
+                value={values.email}
+                onChange={handleChange("email")}
                 required
                 fullWidth
-                value={values.password}
-                onChange={handleChange("password")}
+                margin="normal"
               />
+              <FormControl>
+                <TextField
+                  name="password"
+                  id="password"
+                  label="Your password"
+                  type="password"
+                  required
+                  fullWidth
+                  value={values.password}
+                  onChange={handleChange("password")}
+                />
+              </FormControl>
             </FormControl>
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
 
-          <Button
-            variant="contained"
-            fullWidth
-            color="secondary"
-            type="submit"
-            onSubmit={handleSubmit}
-          >
-            Log In
-          </Button>
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
-              <br></br>
-              {"Don't have an account yet?"}
-              <Link to={"/signup"} style={{ textDecoration: "none" }}>
-                {" "}
-                Register
-              </Link>{" "}
+            <Button
+              variant="contained"
+              fullWidth
+              color="secondary"
+              type="submit"
+              onSubmit={handleSubmit}
+            >
+              Log In
+            </Button>
+            <Grid container>
+              <Grid item xs></Grid>
+              <Grid item>
+                <br></br>
+                {"Don't have an account yet?"}
+                <Link to={"/signup"} style={{ textDecoration: "none" }}>
+                  {" "}
+                  Register
+                </Link>{" "}
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </Box>
-    </Container>
+          </form>
+        </Box>
+      </Container>
+    </Layout>
   );
 };

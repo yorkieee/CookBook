@@ -1,12 +1,11 @@
-import { CssBaseline, Box } from "@mui/material";
-// import image from "../assets/image.jpg";
+import { Box } from "@mui/material";
+import { Navbar } from "../components/Navbar";
 
 export const Layout = ({ children }) => {
   return (
-    <CssBaseline>
-      <Box sx={{ bgcolor: "white", width: "100vw", height: "100vh" }}>
-        {children}
-      </Box>
-    </CssBaseline>
+    <Box sx={{}}>
+      <Navbar />
+      {children}
+    </Box>
   );
 };

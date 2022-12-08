@@ -8,11 +8,10 @@ import {
   CardActions,
   CardHeader,
   CardMedia,
-  CssBaseline,
   IconButton,
   Typography,
-  Box,
   Collapse,
+  Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -59,7 +58,7 @@ export const RecipeDetails = () => {
   const { title, ingredients, instructions } = recipe;
 
   return (
-    <CssBaseline>
+    <Box>
       <Card
         sx={{
           minWidth: 246,
@@ -108,6 +107,6 @@ export const RecipeDetails = () => {
           </CardContent>
         </Collapse>
       </Card>
-    </CssBaseline>
+    </Box>
   );
 };

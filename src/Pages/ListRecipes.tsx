@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "@mui/system";
-import { RecipeCard } from "../Pages/RecipeCard";
+import { RecipeCard } from "../components/RecipeCard";
 import { Grid } from "@mui/material";
-import { Layout } from "../styles/Layout";
 import { SearchBar } from "../components/Search";
 import { useHandleFavourites } from "../hooks/useHandleFavourites";
+import { Layout } from "../styles/Layout";
 
 const ListRecipes: React.FC<any> = ({ recipeData }) => {
   const { favourites, isFetched, setIsFetched } = useHandleFavourites();
