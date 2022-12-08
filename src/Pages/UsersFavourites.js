@@ -7,10 +7,10 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { useGetFavourites } from "../hooks/useGetFavourites";
+import { useHandleFavourites } from "../hooks/useHandleFavourites";
 
 export const UsersFavourites = () => {
-  const favourites = useGetFavourites();
+  const favourites = useHandleFavourites();
 
   return (
     <Container sx={{ marginTop: 8 }}>
