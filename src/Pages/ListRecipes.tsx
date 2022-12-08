@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "@mui/system";
 import { RecipeCard } from "../Pages/RecipeCard";
 import { Grid } from "@mui/material";
@@ -11,9 +11,9 @@ const ListRecipes: React.FC<any> = ({ recipeData }) => {
 
   return (
     <Layout>
-      <Container>
+      <Container maxWidth="lg">
         <SearchBar />
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           {recipeData.map((recipe: any, id: string) => {
             const recipeId = recipe.uid;
 
@@ -24,7 +24,7 @@ const ListRecipes: React.FC<any> = ({ recipeData }) => {
             const isLiked = !!match;
 
             return (
-              <Grid item key={id} xs={12} md={3} lg={4}>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
                 <RecipeCard
                   isLikesFetched={isFetched}
                   setIsFetched={setIsFetched}
