@@ -46,7 +46,7 @@ export const UpdateProfile = () => {
   return (
     <Container>
       <Button onClick={handleOpen}>
-        <EditIcon fontSize="medium" color="secondary" />
+        <EditIcon fontSize="small" color="black" />
       </Button>
       <Modal
         open={open}
@@ -69,9 +69,3 @@ export const UpdateProfile = () => {
     </Container>
   );
 };
-
-// <TextField
-//   label={"Your new user name"}
-//   onChange={handleUsernameChange}
-//   value={user?.user.name}
-// />;
