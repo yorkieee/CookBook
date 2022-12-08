@@ -79,15 +79,14 @@ export const Login = () => {
             />
             <FormControl>
               <TextField
+                name="password"
                 id="password"
                 label="Your password"
-                variant="outlined"
-                color="info"
-                value={values.password}
-                onChange={handleChange("password")}
+                type="password"
                 required
                 fullWidth
-                margin="normal"
+                value={values.password}
+                onChange={handleChange("password")}
               />
             </FormControl>
           </FormControl>
