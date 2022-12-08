@@ -23,6 +23,7 @@ import { CommentsAdd } from "../components/CommentsAdd";
 import { useGetRecipeById } from "../hooks/useGetRecipeById";
 
 import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
+import { Loader } from "../components/Loader";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -48,7 +49,12 @@ export const RecipeDetails = () => {
     setExpanded(!expanded);
   };
 
-  if (!recipe) return <h1>{"...loading"}</h1>;
+  if (!recipe)
+    return (
+      <h1>
+        <Loader />
+      </h1>
+    );
 
   const { title, ingredients, instructions } = recipe;
 
@@ -56,6 +62,7 @@ export const RecipeDetails = () => {
     <CssBaseline>
       <Card
         sx={{
+          minWidth: 246,
           maxWidth: 345,
           marginTop: 8,
           marginLeft: 2,

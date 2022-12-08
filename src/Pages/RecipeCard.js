@@ -12,9 +12,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CommentIcon from "@mui/icons-material/Comment";
 
 import { styled } from "@mui/material/styles";
-import { Container, CssBaseline } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 
 import { FavouriteButton } from "../components/FavouriteButton";
+import { Box } from "@mui/system";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -45,24 +46,37 @@ export const RecipeCard = ({
 
   return (
     <CssBaseline>
-      <Card sx={{ minHeight: 400 }} sm={{ maxWidth: 345 }}>
-        <CardHeader title={recipe.title} />
-        <CardMedia component="img" height="194" src={recipe.image} alt="" />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {recipe.description}
-          </Typography>
-        </CardContent>
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          minHeight: 400,
+        }}
+        sm={{ maxWidth: 345 }}
+      >
+        <Box>
+          <CardHeader title={recipe.title} />
+          <CardMedia
+            component={"img"}
+            height={"194"}
+            src={recipe.image}
+            alt={"recipe image"}
+          />
+          <CardContent>
+            <Typography variant={"body2"} color={"text.secondary"}>
+              {recipe.description}
+            </Typography>
+          </CardContent>
+        </Box>
 
         <CardActions disableSpacing>
           {isLikesFetched && (
-            <IconButton aria-label="add to favorites">
-              <FavouriteButton
-                setIsFetched={setIsFetched}
-                isLiked={isLiked}
-                recipeId={recipeId}
-              />
-            </IconButton>
+            <FavouriteButton
+              setIsFetched={setIsFetched}
+              isLiked={isLiked}
+              recipeId={recipeId}
+            />
           )}
 
           <IconButton
@@ -88,10 +102,14 @@ export const RecipeCard = ({
 
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography sx={{ fontWeight: "bold" }}>Ingredients:</Typography>
+            <Typography title sx={{ fontWeight: "bold" }}>
+              Ingredients:
+            </Typography>
             <Typography paragraph>{recipe.ingredients}</Typography>
             <Typography sx={{ fontWeight: "bold" }}>How to cook:</Typography>
-            <Typography paragraph>{recipe.instructions}</Typography>
+            <Typography title paragraph>
+              {recipe.instructions}
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>
