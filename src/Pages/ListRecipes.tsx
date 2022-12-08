@@ -8,7 +8,7 @@ import { useGetFavourites } from "../hooks/useGetFavourites";
 
 const ListRecipes: React.FC<any> = ({ recipeData }) => {
   const favourites = useGetFavourites();
-  console.log({ favourites });
+
   return (
     <Layout>
       <Container>
@@ -16,7 +16,6 @@ const ListRecipes: React.FC<any> = ({ recipeData }) => {
         <Grid container spacing={4}>
           {recipeData.map((recipe: any, id: string) => {
             const recipeId = recipe.uid;
-            console.log({ recipeId });
 
             const match = favourites.find(({ uid }: any) => {
               return uid === recipeId;
