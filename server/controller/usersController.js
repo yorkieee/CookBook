@@ -2,6 +2,7 @@ import pool from "../dbConfig.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
+
 export const getAllUsers = async (req, res) => {
   try {
     const getAllUsers = await pool.query("SELECT * FROM users");
