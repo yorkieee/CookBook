@@ -10,7 +10,6 @@ const LandingPage = () => {
     <Layout>
       <Container
         sx={{
-          height: "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-evenly",
