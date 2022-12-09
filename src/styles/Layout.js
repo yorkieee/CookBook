@@ -3,7 +3,7 @@ import { Navbar } from "../components/Navbar";
 
 export const Layout = ({ children }) => {
   return (
-    <Box sx={{}}>
+    <Box>
       <Navbar />
       {children}
     </Box>

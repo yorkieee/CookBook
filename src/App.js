@@ -17,6 +17,7 @@ import { UsersFavourites } from "./Pages/UsersFavourites";
 import { RecipeDetails } from "./Pages/RecipeDetails.js";
 import { ProtectedRoute } from "./utils/ProtectedRoute.js";
 import { CssBaseline } from "@mui/material";
+// import "./styles.css";
 
 const App = () => {
   const [recipeData, setRecipeData] = useState([]);

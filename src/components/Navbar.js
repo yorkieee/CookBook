@@ -67,18 +67,17 @@ export const Navbar = () => {
     >
       <MenuItem onClick={handleMenuClose}>
         <Link style={linkStyle} to="/signup">
-          Sign Up
+          {"Sign Up"}
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        {" "}
         <Link style={linkStyle} to="/login">
-          Log In{" "}
+          {"Log In"}
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link style={linkStyle} to="/profile">
-          Profile
+          {"Profile"}
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
@@ -108,7 +107,7 @@ export const Navbar = () => {
         <IconButton size="large" color="primary">
           <MenuBookIcon />
           <Link style={linkStyle} to="/recipes">
-            All Recipes
+            {"All Recipes"}
           </Link>
         </IconButton>
       </MenuItem>
@@ -118,7 +117,7 @@ export const Navbar = () => {
           <StickyNote2Icon />
 
           <Link style={linkStyle} to="/usersrecipe">
-            My recipies
+            {"My recipies"}
           </Link>
         </IconButton>
       </MenuItem>
@@ -127,8 +126,7 @@ export const Navbar = () => {
         <IconButton size="large" color="primary">
           <FavoriteOutlined />
           <Link style={linkStyle} to="/favourites">
-            {" "}
-            Favourite recipes
+            {"Favourite recipes"}
           </Link>
         </IconButton>
       </MenuItem>
@@ -143,7 +141,7 @@ export const Navbar = () => {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>{"Profile"}</p>
       </MenuItem>
     </Menu>
   );
@@ -153,7 +151,7 @@ export const Navbar = () => {
       <AppBar
         position="static"
         sx={{
-          background: "linear-gradient(45deg, #455a64 , #263238)",
+          background: "theme.primary.light",
         }}
       >
         <Toolbar sx={{ color: "#eceff1" }}>
@@ -170,7 +168,7 @@ export const Navbar = () => {
               navigate(`/`);
             }}
           >
-            CookBook
+            {"CookBook"}
           </Button>
 
           <Box sx={{ flexGrow: 1 }} />
