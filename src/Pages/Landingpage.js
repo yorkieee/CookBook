@@ -3,16 +3,19 @@ import Box from "@mui/material/Box";
 import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import { Layout } from "../styles/Layout";
+import image from "../assets/bg.jpg";
 
 const LandingPage = () => {
   return (
     <Layout>
       <Container
         sx={{
+          height: "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-evenly",
           alignItems: "center",
+          backgroundColor: "#FCFDF2",
         }}
       >
         <Box
@@ -24,7 +27,6 @@ const LandingPage = () => {
             flexDirection: "column",
             alignItems: "center",
 
-            backgroundColor: "white",
             mb: 4,
             mt: { sx: 4, sm: 10, lg: 3 },
           }}
@@ -48,10 +50,10 @@ const LandingPage = () => {
         >
           <Button
             sx={{
-              background: "#37474f",
+              backgroundColor: "secondary",
               border: 0,
-              width: "170px",
-              height: "30px",
+              width: "210px",
+              height: "80px",
               color: "black",
               marginBottom: 15,
               borderRadius: 8,
@@ -63,24 +65,23 @@ const LandingPage = () => {
             <Link
               style={{
                 textDecoration: "none",
-                color: "white",
-                fontFamily: "Helvetica",
+                color: "black",
               }}
               to="/signup"
             >
-              Get started{" "}
+              {"Get started"}
             </Link>
           </Button>
           <Button
             sx={{
               background: "white",
               border: 2,
-              width: "170px",
-              height: "30px",
+              width: "210px",
+              height: "80px",
               color: "black",
               marginBottom: 15,
               borderRadius: 8,
-              borderColor: "#37474f",
+              borderColor: "#primary",
               padding: "0 30px",
             }}
           >
@@ -89,11 +90,10 @@ const LandingPage = () => {
               style={{
                 textDecoration: "none",
                 color: "#37474f",
-                fontFamily: "Helvetica",
               }}
               to="/login"
             >
-              Log in{" "}
+              {"Log in"}
             </Link>
           </Button>
         </Box>
@@ -103,3 +103,7 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
+// backgroundImage: `url(${image})`,
+// backgroundRepeat: "no-repeat",
+// backgroundSize: "100vh",

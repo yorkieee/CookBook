@@ -4,19 +4,25 @@ import { Box, Container } from "@mui/system";
 export const CommentsSection = ({ recipeComments }: any) => {
   if (recipeComments.length === 0) return null;
 
-  const style = {
-    color: "black",
-    font: "Helvetica",
-    fontWeight: "bold",
-  };
-  console.log(recipeComments);
-
   return (
-    <div>
-      <Typography style={style}>{"All Commments: "}</Typography>
-
+    <Box>
+      <Box>
+        <Typography>{"Commments:"}</Typography>
+      </Box>
       {recipeComments.map((comment: any) => (
-        <div>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            // height: "56px",
+            borderTopColor: "#dddddd",
+            borderTopStyle: "solid",
+            borderTopWidth: "1px",
+            paddingTop: "12px",
+            marginTop: "16px",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -29,9 +35,11 @@ export const CommentsSection = ({ recipeComments }: any) => {
               {comment.author_name}
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: 12 }}>{comment.comment}</Typography>
-        </div>
+          <Typography sx={{ marginTop: "12px", fontSize: 18 }}>
+            {comment.comment}
+          </Typography>
+        </Box>
       ))}
-    </div>
+    </Box>
   );
 };

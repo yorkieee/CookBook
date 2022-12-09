@@ -23,6 +23,7 @@ import { useGetRecipeById } from "../hooks/useGetRecipeById";
 
 import { useGetRecipeComments } from "../hooks/useGetRecipeComments";
 import { Loader } from "../components/Loader";
+import { Layout } from "../styles/Layout";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -58,55 +59,57 @@ export const RecipeDetails = () => {
   const { title, ingredients, instructions } = recipe;
 
   return (
-    <Box>
-      <Card
-        sx={{
-          minWidth: 246,
-          maxWidth: 345,
-          marginTop: 8,
-          marginLeft: 2,
-          marginRight: 2,
-          display: "flex",
-          justifyConten: "center",
-          alignItems: "center",
-        }}
-      >
-        <CardContent>
-          <CardHeader title={title} />
-          <CardMedia component="img" height="154" src={recipe.image} alt="" />
-
-          <CommentsAdd recipe={recipe} />
-          <CommentsSection recipeComments={recipeComments} />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardActions disableSpacing>
-          <ExpandMore
-            color="secondary"
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-          >
-            <ExpandMoreIcon
-              aria-label="show more"
-              sx={{
-                display: "flex",
-                justifyConten: "center",
-                alignItems: "center",
-              }}
-            />
-          </ExpandMore>
-        </CardActions>
-
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <Layout>
+      <Box>
+        <Card
+          sx={{
+            minWidth: 246,
+            maxWidth: 345,
+            marginTop: 8,
+            marginLeft: 2,
+            marginRight: 2,
+            display: "flex",
+            justifyConten: "center",
+            alignItems: "center",
+          }}
+        >
           <CardContent>
-            <Typography sx={{ fontWeight: "bold" }}>Ingredients:</Typography>
-            <Typography paragraph>{ingredients}</Typography>
-            <Typography sx={{ fontWeight: "bold" }}>How to cook:</Typography>
-            <Typography paragraph>{instructions}</Typography>
+            <CardHeader title={title} />
+            <CardMedia component="img" height="154" src={recipe.image} alt="" />
+
+            <CommentsAdd recipe={recipe} />
+            <CommentsSection recipeComments={recipeComments} />
           </CardContent>
-        </Collapse>
-      </Card>
-    </Box>
+        </Card>
+        <Card>
+          <CardActions disableSpacing>
+            <ExpandMore
+              color="secondary"
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+            >
+              <ExpandMoreIcon
+                aria-label="show more"
+                sx={{
+                  display: "flex",
+                  justifyConten: "center",
+                  alignItems: "center",
+                }}
+              />
+            </ExpandMore>
+          </CardActions>
+
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography sx={{ fontWeight: "bold" }}>Ingredients:</Typography>
+              <Typography paragraph>{ingredients}</Typography>
+              <Typography sx={{ fontWeight: "bold" }}>How to cook:</Typography>
+              <Typography paragraph>{instructions}</Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
+      </Box>
+    </Layout>
   );
 };
