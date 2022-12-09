@@ -41,7 +41,7 @@ export const AuthContext = createContext<AuthContextValue>(initialAuth);
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<userType>(null);
 
-  const backendUrl = "http://localhost:5001";
+  const backendUrl = "https://cookbook-ochre-six.vercel.app";
 
   const register = async (
     email: string,

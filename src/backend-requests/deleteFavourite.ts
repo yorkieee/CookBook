@@ -8,5 +8,5 @@ export const deleteFavourite = async (recipeId: string, userId: string) => {
     body: JSON.stringify({ recipe_id: recipeId, user_id: userId }),
   };
 
-  await fetch("http://localhost:5001/deletefavourite", options);
+  await fetch("https://cookbook-ochre-six.vercel.app/deletefavourite", options);
 };

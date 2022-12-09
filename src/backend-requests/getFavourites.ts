@@ -9,7 +9,7 @@ export const getFavourites = async (uid: string) => {
       method: "GET",
     };
     const data = await axios.get(
-      `http://localhost:5001/favourites?uid=${uid}`,
+      `https://cookbook-ochre-six.vercel.app/favourites?uid=${uid}`,
       options
     );
     if (data.data) {

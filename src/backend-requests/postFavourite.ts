@@ -8,5 +8,5 @@ export const postFavourite = async (recipeId: string, userId: string) => {
     body: JSON.stringify({ recipe_id: recipeId, user_id: userId }),
   };
 
-  await fetch("http://localhost:5001/addfavourites", options);
+  await fetch("https://cookbook-ochre-six.vercel.app/addfavourites", options);
 };

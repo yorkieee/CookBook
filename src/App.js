@@ -6,7 +6,7 @@ import { useGetRecipes } from "./hooks/useGetRecipes.js";
 import { ThemeProvider } from "@mui/material/styles";
 import { SignUp } from "./Pages/SignUp.tsx";
 import { Login } from "./Pages/Login";
-import { Profile } from "././Pages/Profile";
+import { Profile } from "./Pages/Profile";
 import { AuthContextProvider } from "./context/AuthContext";
 import { Logout } from "./components/Logout.js";
 import { AddRecipe } from "./Pages/AddRecipe";

@@ -4,7 +4,9 @@ export const useGetRecipes = (setList) => {
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const response = await fetch("http://localhost:5001/recipes");
+        const response = await fetch(
+          "https://cookbook-ochre-six.vercel.app/recipes"
+        );
         const recipeData = await response.json();
         setList(recipeData);
       } catch (err) {

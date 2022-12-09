@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const backendUrl = "http://localhost:5001";
+const backendUrl = "https://cookbook-ochre-six.vercel.app";
 
 export const useGetRecipeById = () => {
   const [recipes, setRecipes] = useState([]);

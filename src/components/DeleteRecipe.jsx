@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const backendUrl = "http://localhost:5001";
+const backendUrl = "https://cookbook-ochre-six.vercel.app";
 
 export const DeleteRecipe = ({ id }) => {
   const [open, setOpen] = useState(false);
