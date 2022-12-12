@@ -22,7 +22,7 @@ const Copyright = (props: any) => {
   );
 };
 
-const backendUrl = "https://cookbook-ochre-six.vercel.app/";
+const backendUrl = "https://cookbook-ochre-six.vercel.app";
 
 export const AddRecipe = () => {
   const [title, setTitle] = useState("");
