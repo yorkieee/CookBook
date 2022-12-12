@@ -26,9 +26,15 @@ app.use(
   })
 );
 
+const whitelist = ["https://cookbook-yorkieee.vercel.app"];
 const corsOptions = {
-  origin: "https://cookbook-yorkieee.vercel.app",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
 
 app.use(passport.initialize());
