@@ -16,5 +16,5 @@ export const postRecipeComment = async (
     }),
   };
 
-  await fetch("https://cookbook-ochre-six.vercel.app", options);
+  await fetch("https://pern-pi.vercel.app", options);
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const backendUrl = "https://cookbook-ochre-six.vercel.app";
+const backendUrl = "https://pern-pi.vercel.app";
 
 export const useGetUserRecipes = () => {
   const [recipes, setRecipes] = useState([]);

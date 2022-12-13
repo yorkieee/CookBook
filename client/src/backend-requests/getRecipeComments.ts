@@ -8,7 +8,7 @@ export const getRecipeComments = async (recipeId: string) => {
     method: "GET",
   };
   const data = await axios.get(
-    `https://cookbook-ochre-six.vercel.app/getcomments?recipeid=${recipeId}`,
+    `https://pern-pi.vercel.app/getcomments?recipeid=${recipeId}`,
     options
   );
   const comments = data.data;

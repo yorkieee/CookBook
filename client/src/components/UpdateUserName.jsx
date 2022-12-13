@@ -15,7 +15,7 @@ export const UpdateProfile = () => {
   const updateUsername = async (e) => {
     e.preventDefault();
     try {
-      const backendUrl = "https://cookbook-ochre-six.vercel.app";
+      const backendUrl = "https://pern-pi.vercel.app";
       const options = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
