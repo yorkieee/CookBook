@@ -14,7 +14,6 @@ const LandingPage = () => {
           flexDirection: "column",
           justifyContent: "space-evenly",
           alignItems: "center",
-          backgroundColor: "#FCFDF2",
         }}
       >
         <Box
